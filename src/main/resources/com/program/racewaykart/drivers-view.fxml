@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/drivers-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.KartsSceneController">
+<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/drivers-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.DriversSceneController">
    <children>
       <HBox fx:id="upperHBox" prefHeight="75.0" prefWidth="785.0">
          <padding>

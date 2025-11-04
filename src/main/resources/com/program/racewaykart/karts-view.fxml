@@ -176,7 +176,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="groupsButton31111" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
@@ -217,7 +217,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="groupsButton311111" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
@@ -258,7 +258,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="groupsButton311112" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
@@ -299,7 +299,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="groupsButton311113" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
@@ -355,7 +355,7 @@
                                     <Insets left="1.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="surnameInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Номер карта" styleClass="input">
+                              <TextField fx:id="numberKartInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Номер карта" styleClass="input">
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
@@ -380,7 +380,7 @@
                         <Insets bottom="20.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </VBox>
-                  <Label fx:id="resetDriversButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetData" prefHeight="41.0" prefWidth="226.0" text="Сброс картов">
+                  <Label fx:id="resetKartsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetData" prefHeight="41.0" prefWidth="226.0" text="Сброс картов">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>

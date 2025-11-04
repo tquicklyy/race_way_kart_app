@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -19,8 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
-public class KartsSceneController {
+public class DriversSceneController {
 
     @FXML
     private ResourceBundle resources;
@@ -50,6 +52,9 @@ public class KartsSceneController {
     private Label groupsButton3111;
 
     @FXML
+    private Label groupsButton31111;
+
+    @FXML
     private HBox headerButtonsHBox;
 
     @FXML
@@ -62,13 +67,16 @@ public class KartsSceneController {
     private ImageView logoImage;
 
     @FXML
-    private TextField numberKartInput;
+    private TextField nameInput;
+
+    @FXML
+    private TextField patronymicInput;
 
     @FXML
     private Label resetAllButton;
 
     @FXML
-    private Label resetKartsButton;
+    private Label resetDriversButton;
 
     @FXML
     private Label saveSerialButton;
@@ -77,53 +85,58 @@ public class KartsSceneController {
     private ScrollPane scrollPane;
 
     @FXML
+    private TextField surnameInput;
+
+    @FXML
     private VBox tableVBox;
 
     @FXML
     private HBox upperHBox;
 
-    public static ArrayList<Kart> KARTS = new ArrayList<>();
+    public static ArrayList<Driver> DRIVERS = new ArrayList<>();
 
     @FXML
     void initialize() {
         dataVBox.getChildren().clear();
 
-        if(!KARTS.isEmpty()) {
-            for(Kart kart: KARTS) {
-                createRow(kart);
+        if(!DRIVERS.isEmpty()) {
+            for(Driver driver: DRIVERS) {
+                createRow(driver);
             }
         }
 
-        hideHeadersTableAndScrollPane(KARTS.isEmpty());
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
     }
 
     @FXML
-    void resetData() {
-        KARTS.clear();
+    void resetData(MouseEvent event) {
+        DRIVERS.clear();
         dataVBox.getChildren().clear();
-        hideHeadersTableAndScrollPane(KARTS.isEmpty());
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
     }
 
     @FXML
-    void addData() {
-        if(!isValidKartNumber(numberKartInput.getText())) {
-            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Данные о карте введены некорректно.");
+    void addData(MouseEvent event) {
+        if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText())) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления водителя.", "Данные о водителе введены некорректно.");
             return;
         }
 
-        Kart newKart = addDataToKarts();
-        createRow(newKart);
-        hideHeadersTableAndScrollPane(KARTS.isEmpty());
+        Driver newDriver = addDataToDrivers();
+        createRow(newDriver);
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
         clearInputs();
     }
 
-    void createRow(Kart newKart) {
+    void createRow(Driver newDriver) {
         HBox rowHBox = createHBoxRow();
-        Label labelID = createIDLabelRow(newKart.getID());
-        Label labelNumberOfCart = createBlueLabelRow(String.valueOf(newKart.getNumberOfKart()));
-        Label labelDelete = createDeleteButtonRow(rowHBox, newKart);
+        Label labelID = createIDLabelRow(newDriver.getID());
+        Label labelSurname = createBlueLabelRow(newDriver.getSurname());
+        Label labelName = createBlueLabelRow(newDriver.getName());
+        Label labelPatronymic = createBlueLabelRow(newDriver.getPatronymic());
+        Label labelDelete = createDeleteButtonRow(rowHBox, newDriver);
 
-        rowHBox.getChildren().addAll(labelID, labelNumberOfCart, labelDelete);
+        rowHBox.getChildren().addAll(labelID, labelSurname, labelName, labelPatronymic, labelDelete);
         dataVBox.getChildren().add(rowHBox);
     }
 
@@ -148,16 +161,16 @@ public class KartsSceneController {
         Label label = new Label(text);
         label.getStyleClass().addAll("blue-white-button", "data-items");
 
-        label.setMinWidth(421);
+        label.setMinWidth(137);
         label.setMinHeight(35);
-        label.setMaxWidth(421);
+        label.setMaxWidth(137);
         label.setMaxHeight(35);
 
         HBox.setMargin(label, new Insets(0,5,0,0));
         return label;
     }
 
-    Label createDeleteButtonRow(HBox parentToDelete, Kart kartToDelete) {
+    Label createDeleteButtonRow(HBox parentToDelete, Driver driverToDelete) {
         Label label = new Label("X");
         label.getStyleClass().addAll("red-white-button", "id-header", "label-button");
 
@@ -169,8 +182,8 @@ public class KartsSceneController {
         label.setOnMouseClicked(_ -> {
             Platform.runLater(() -> {
                 dataVBox.getChildren().remove(parentToDelete);
-                KARTS.remove(kartToDelete);
-                hideHeadersTableAndScrollPane(KARTS.isEmpty());
+                DRIVERS.remove(driverToDelete);
+                hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
             });
         });
 
@@ -192,17 +205,20 @@ public class KartsSceneController {
     }
 
     void clearInputs() {
-        numberKartInput.setText("");
+        nameInput.setText("");
+        surnameInput.setText("");
+        patronymicInput.setText("");
     }
 
-    Kart addDataToKarts() {
-        Kart newKart = new Kart(KARTS.size() + 1, Integer.parseInt(numberKartInput.getText()));
-        KARTS.add(newKart);
-        return newKart;
+    Driver addDataToDrivers() {
+        Driver newDriver = new Driver(DRIVERS.size() + 1, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
+        DRIVERS.add(newDriver);
+        return newDriver;
     }
 
-    boolean isValidKartNumber(String numberOfCart) {
-        return numberOfCart.matches("\\d+");
+    boolean isValidNameSurnamePatronymic(String surname, String name) {
+        return !surname.isBlank() && !name.isBlank();
+
     }
 
 }
