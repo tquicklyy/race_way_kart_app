@@ -46,7 +46,7 @@
     -fx-background: transparent;
 }
 
-.table-vbox, .data-vbox {
+.table-vbox, .add-data-vbox {
     -fx-border-width: 3px;
     -fx-border-color: white;
 }
@@ -76,7 +76,7 @@
     -fx-background-color: white;
 }
 
-.data-vbox {
+.add-data-vbox {
    -fx-border-radius: 9px;
    -fx-background-radius: 11px;
 }

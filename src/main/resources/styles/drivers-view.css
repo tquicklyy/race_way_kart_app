@@ -1,0 +1,95 @@
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-VariableFont_opsz,wght.ttf");
+}
+
+.general-vbox {
+    -fx-font-family: "Inter";
+    -fx-background-image: url("../images/background-image.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.label-button {
+    -fx-cursor: hand;
+}
+
+.header-button {
+    -fx-font-size: 16px;
+    -fx-alignment: center;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 14px;
+    -fx-border-width: 2.5px;
+}
+
+.blue-white-button {
+    -fx-border-color: #1400CA;
+    -fx-background-color: white;
+}
+
+.blue-gray-button {
+    -fx-border-color: #1400CA;
+    -fx-background-color: #DDDDDD;
+}
+
+.black-white-button {
+    -fx-border-color: #000;
+    -fx-background-color: white;
+}
+
+.center-hbox {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.table-vbox, .add-data-vbox {
+    -fx-border-width: 3px;
+    -fx-border-color: white;
+}
+
+.table-vbox * {
+    -fx-text-fill: black;
+}
+
+.data-headers, .data-items {
+   -fx-font-size: 16px;
+   -fx-alignment: center;
+   -fx-border-radius: 9px;
+   -fx-background-radius: 11px;
+   -fx-border-width: 2.5px;
+}
+
+.id-header {
+   -fx-font-size: 16px;
+   -fx-alignment: center;
+   -fx-border-radius: 100px;
+   -fx-background-radius: 100px;
+   -fx-border-width: 2.5px;
+}
+
+.red-white-button {
+    -fx-border-color: red;
+    -fx-background-color: white;
+}
+
+.add-data-vbox {
+   -fx-border-radius: 9px;
+   -fx-background-radius: 11px;
+}
+
+.label-input {
+    -fx-font-size: 16px;
+}
+
+.input {
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-font-size: 16px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 14px;
+    -fx-border-width: 2.5px;
+}

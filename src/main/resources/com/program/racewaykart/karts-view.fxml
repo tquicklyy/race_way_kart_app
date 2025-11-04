@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/drivers-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.KartsSceneController">
+<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/karts-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.KartsSceneController">
    <children>
       <HBox fx:id="upperHBox" prefHeight="75.0" prefWidth="785.0">
          <padding>
@@ -40,7 +40,7 @@
                         <Font name="Arial" size="29.0" />
                      </font>
                      <styleClass>
-                        <String fx:value="blue-white-button" />
+                        <String fx:value="blue-gray-button" />
                         <String fx:value="header-button" />
                         <String fx:value="label-button" />
                      </styleClass>
@@ -50,7 +50,7 @@
                         <Font name="Arial" size="29.0" />
                      </font>
                      <styleClass>
-                        <String fx:value="blue-gray-button" />
+                        <String fx:value="blue-white-button" />
                         <String fx:value="header-button" />
                         <String fx:value="label-button" />
                      </styleClass>
@@ -86,7 +86,7 @@
          <children>
             <VBox fx:id="tableVBox" prefHeight="200.0" prefWidth="100.0" styleClass="table-vbox" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="125.0" prefHeight="30.0" prefWidth="516.0" text="Водители">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="512.0" prefHeight="30.0" prefWidth="516.0" text="Карты">
                      <font>
                         <Font name="Cambria Math" size="29.0" />
                      </font>
@@ -113,31 +113,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="137.0" prefHeight="30.0" prefWidth="137.0" text="Фамилия">
-                           <font>
-                              <Font name="Arial" size="29.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="black-white-button" />
-                              <String fx:value="data-headers" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="137.0" prefHeight="30.0" prefWidth="137.0" text="Имя">
-                           <font>
-                              <Font name="Arial" size="29.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="black-white-button" />
-                              <String fx:value="data-headers" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="137.0" prefHeight="30.0" prefWidth="137.0" text="Отчество">
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="137.0" prefHeight="30.0" prefWidth="459.0" text="Номер карта">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -188,44 +164,142 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="137.0" prefHeight="35.0" prefWidth="91.0" text="Конников">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="421.0" prefHeight="35.0" prefWidth="91.0" text="22">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
                                        <styleClass>
                                           <String fx:value="blue-white-button" />
                                           <String fx:value="data-items" />
-                                       </styleClass>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="137.0" prefHeight="35.0" prefWidth="137.0" text="Глеб">
-                                       <font>
-                                          <Font name="Arial" size="29.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="blue-white-button" />
-                                          <String fx:value="data-items" />
-                                       </styleClass>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="137.0" prefHeight="35.0" prefWidth="137.0" text="Владимирович">
-                                       <font>
-                                          <Font name="Arial" size="29.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="blue-white-button" />
-                                          <String fx:value="data-items" />
-                                          <String fx:value="label-button" />
                                        </styleClass>
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
                                     <Label fx:id="groupsButton31111" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="red-white-button" />
+                                          <String fx:value="id-header" />
+                                          <String fx:value="label-button" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="1328.0">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="2">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="id-header" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="421.0" prefHeight="35.0" prefWidth="91.0" text="32">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="data-items" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="groupsButton311111" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="red-white-button" />
+                                          <String fx:value="id-header" />
+                                          <String fx:value="label-button" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="1328.0">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="3">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="id-header" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="421.0" prefHeight="35.0" prefWidth="91.0" text="51">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="data-items" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="groupsButton311112" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="red-white-button" />
+                                          <String fx:value="id-header" />
+                                          <String fx:value="label-button" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="1328.0">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="4">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="id-header" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="421.0" prefHeight="35.0" prefWidth="91.0" text="11">
+                                       <font>
+                                          <Font name="Arial" size="29.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-white-button" />
+                                          <String fx:value="data-items" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="groupsButton311113" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="X">
                                        <font>
                                           <Font name="Arial" size="29.0" />
                                        </font>
@@ -256,7 +330,7 @@
                <children>
                   <VBox fx:id="addDataVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="add-data-vbox" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="206.0" text="Данные водителя">
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="206.0" text="Данные карта">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -273,7 +347,7 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Фамилия">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Номер карта">
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
@@ -281,33 +355,7 @@
                                     <Insets left="1.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="surnameInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Фамилия" styleClass="input">
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Имя">
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="nameInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Имя" styleClass="input">
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Отчество">
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="patronymicInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Отчество" styleClass="input">
+                              <TextField fx:id="surnameInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Номер карта" styleClass="input">
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
@@ -332,7 +380,7 @@
                         <Insets bottom="20.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </VBox>
-                  <Label fx:id="resetDriversButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetData" prefHeight="41.0" prefWidth="226.0" text="Сброс водителей">
+                  <Label fx:id="resetDriversButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetData" prefHeight="41.0" prefWidth="226.0" text="Сброс картов">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
