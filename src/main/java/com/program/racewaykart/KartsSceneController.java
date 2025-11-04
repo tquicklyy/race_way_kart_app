@@ -101,8 +101,8 @@ public class KartsSceneController {
 
     @FXML
     void addData(MouseEvent event) {
-        if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText(), patronymicInput.getText())) {
-            showErrorAlert("Ошибка добавления", "Ошибка добавления водителя", "Данные введены некорректно (пустые строки, цифры)");
+        if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText())) {
+            showErrorAlert("Ошибка добавления.", "Ошибка добавления водителя.", "Данные о водителе введены некорректно.");
             return;
         }
 
@@ -219,12 +219,8 @@ public class KartsSceneController {
         return newDriver;
     }
 
-    boolean isValidNameSurnamePatronymic(String surname, String name, String patronymic) {
-        return !surname.isBlank()
-                && surname.matches("[А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?")
-                && !name.isBlank()
-                && name.matches("[А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?")
-                && patronymic.matches("([А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?)?");
+    boolean isValidNameSurnamePatronymic(String surname, String name) {
+        return !surname.isBlank() && !name.isBlank();
 
     }
 

@@ -14,13 +14,13 @@ public class Driver {
         this.ID = ID;
         this.surname = surname;
         this.name = name;
-        this.patronymic = patronymic;
+        this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
     }
 
     public Driver(String surname, String name, String patronymic) {
         this.surname = surname;
         this.name = name;
-        this.patronymic = patronymic;
+        this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
     }
 
     public int getID() {
