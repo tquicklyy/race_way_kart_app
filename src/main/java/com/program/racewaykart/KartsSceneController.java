@@ -118,6 +118,11 @@ public class KartsSceneController {
             return;
         }
 
+        if(!isKartNumberNotRepeated(Integer.parseInt(numberKartInput.getText()))) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Карт с таким номером уже добавлен.");
+            return;
+        }
+
         Kart newKart = addDataToKarts();
         createRow(newKart);
         hideHeadersTableAndScrollPane(KARTS.isEmpty());
@@ -211,4 +216,12 @@ public class KartsSceneController {
     boolean isValidKartNumber(String numberOfCart) {
         return numberOfCart.matches("\\d+");
     }
+
+    boolean isKartNumberNotRepeated(int number) {
+        for(Kart kart: KARTS) {
+            if(kart.getNumberOfKart() == number) return false;
+        }
+        return true;
+    }
+
 }
