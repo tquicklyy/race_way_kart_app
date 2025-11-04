@@ -1,13 +1,23 @@
 package com.program.racewaykart;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.program.racewaykart.entity.Driver;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
 public class KartsSceneController {
 
@@ -30,9 +40,6 @@ public class KartsSceneController {
     private VBox dataVBox;
 
     @FXML
-    private VBox dataVBox1;
-
-    @FXML
     private VBox generalVBox;
 
     @FXML
@@ -48,10 +55,7 @@ public class KartsSceneController {
     private HBox headerButtonsHBox;
 
     @FXML
-    private HBox headersScrollPaneHBox;
-
-    @FXML
-    private HBox headersScrollPaneHBox1;
+    private HBox headersTableHBox;
 
     @FXML
     private Label kartsButton;
@@ -75,13 +79,152 @@ public class KartsSceneController {
     private Label saveSerialButton;
 
     @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private TextField surnameInput;
+
+    @FXML
+    private VBox tableVBox;
 
     @FXML
     private HBox upperHBox;
 
+    public static ArrayList<Driver> DRIVERS = new ArrayList<>();
+
     @FXML
     void initialize() {
+        dataVBox.getChildren().clear();
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+
+    }
+
+    @FXML
+    void addData(MouseEvent event) {
+        if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText(), patronymicInput.getText())) {
+            showErrorAlert("Ошибка добавления", "Ошибка добавления водителя", "Данные введены некорректно (пустые строки, цифры)");
+            return;
+        }
+
+        Driver newDriver = addDataToDrivers();
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+        createRow(newDriver.getID(), newDriver.getSurname(), newDriver.getName(), newDriver.getPatronymic(), newDriver);
+        clearInputs();
+    }
+
+    @FXML
+    void resetData(MouseEvent event) {
+        DRIVERS.clear();
+        dataVBox.getChildren().clear();
+        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+    }
+
+    void hideHeadersTableAndScrollPane(boolean isEmpty) {
+        if(isEmpty) {
+            headersTableHBox.setVisible(false);
+            headersTableHBox.setDisable(true);
+            scrollPane.setVisible(false);
+            scrollPane.setDisable(true);
+        } else {
+            headersTableHBox.setVisible(true);
+            headersTableHBox.setDisable(false);
+            scrollPane.setVisible(true);
+            scrollPane.setDisable(false);
+        }
+    }
+
+    void createRow(int ID, String surname, String name, String patronymic, Driver newDriver) {
+        HBox rowHBox = createHBoxRow();
+        Label labelID = createIDLabelRow(ID);
+        Label labelSurname = createBlueLabelRow(surname);
+        Label labelName = createBlueLabelRow(name);
+        Label labelPatronymic = createBlueLabelRow(patronymic);
+        Label labelDelete = createDeleteButtonRow(rowHBox, newDriver);
+
+        rowHBox.getChildren().addAll(labelID, labelSurname, labelName, labelPatronymic, labelDelete);
+        dataVBox.getChildren().add(rowHBox);
+    }
+
+    HBox createHBoxRow() {
+        return new HBox();
+    }
+
+    Label createIDLabelRow(int ID) {
+        Label label = new Label(String.valueOf(ID));
+        label.getStyleClass().addAll("blue-white-button", "id-header");
+
+        label.setMinWidth(30);
+        label.setMinHeight(30);
+        label.setMaxWidth(30);
+        label.setMaxHeight(30);
+
+        HBox.setMargin(label, new Insets(0,5,0,0));
+        return label;
+    }
+
+    Label createBlueLabelRow(String text) {
+        Label label = new Label(text);
+        label.getStyleClass().addAll("blue-white-button", "data-items");
+
+        label.setMinWidth(137);
+        label.setMinHeight(35);
+        label.setMaxWidth(137);
+        label.setMaxHeight(35);
+
+        HBox.setMargin(label, new Insets(0,5,0,0));
+        return label;
+    }
+
+    Label createDeleteButtonRow(HBox parentToDelete, Driver driverToDelete) {
+        Label label = new Label("X");
+        label.getStyleClass().addAll("red-white-button", "id-header", "label-button");
+
+        label.setMinWidth(30);
+        label.setMinHeight(30);
+        label.setMaxWidth(30);
+        label.setMaxHeight(30);
+
+        label.setOnMouseClicked(_ -> {
+            Platform.runLater(() -> {
+                dataVBox.getChildren().remove(parentToDelete);
+                DRIVERS.remove(driverToDelete);
+                hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+            });
+        });
+
+        return label;
+    }
+
+    void clearInputs() {
+        nameInput.setText("");
+        surnameInput.setText("");
+        patronymicInput.setText("");
+    }
+
+    void showErrorAlert(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.initOwner(RaceWayKartApplication.appStage);
+        alert.initModality(Modality.WINDOW_MODAL);
+
+        alert.showAndWait();
+    }
+
+    Driver addDataToDrivers() {
+        Driver newDriver = new Driver(DRIVERS.size() + 1, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
+        DRIVERS.add(newDriver);
+        return newDriver;
+    }
+
+    boolean isValidNameSurnamePatronymic(String surname, String name, String patronymic) {
+        return !surname.isBlank()
+                && surname.matches("[А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?")
+                && !name.isBlank()
+                && name.matches("[А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?")
+                && patronymic.matches("([А-ЯЁа-яё][а-яё]+([-'][А-ЯЁа-яё][а-яё]+)?)?");
 
     }
 

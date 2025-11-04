@@ -11,10 +11,13 @@ import java.util.Objects;
 
 public class RaceWayKartApplication extends Application {
 
+    public static Stage appStage;
+
     @Override
-    public void start(Stage appStage) throws IOException {
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("drivers-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        appStage = stage;
 
         appStage.setTitle("RaceWayKart");
 
@@ -25,7 +28,7 @@ public class RaceWayKartApplication extends Application {
         appStage.setScene(scene);
 
         appStage.setOnCloseRequest(_ -> System.exit(0));
-
+        appStage.toFront();
         appStage.show();
     }
 

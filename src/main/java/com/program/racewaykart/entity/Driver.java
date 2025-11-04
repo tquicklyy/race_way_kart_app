@@ -17,6 +17,12 @@ public class Driver {
         this.patronymic = patronymic;
     }
 
+    public Driver(String surname, String name, String patronymic) {
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+    }
+
     public int getID() {
         return ID;
     }
