@@ -109,6 +109,13 @@ public class DriversSceneController {
     }
 
     @FXML
+    void goToKartsScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("karts-view.fxml"));
+        Scene kartsScene = new Scene(loader.load());
+        RaceWayKartApplication.appStage.setScene(kartsScene);
+    }
+
+    @FXML
     void resetData(MouseEvent event) {
         DRIVERS.clear();
         dataVBox.getChildren().clear();

@@ -98,6 +98,13 @@ public class KartsSceneController {
     }
 
     @FXML
+    void goToDriversScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("drivers-view.fxml"));
+        Scene driversScene = new Scene(loader.load());
+        RaceWayKartApplication.appStage.setScene(driversScene);
+    }
+
+    @FXML
     void resetData() {
         KARTS.clear();
         dataVBox.getChildren().clear();
@@ -204,5 +211,4 @@ public class KartsSceneController {
     boolean isValidKartNumber(String numberOfCart) {
         return numberOfCart.matches("\\d+");
     }
-
 }
