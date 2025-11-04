@@ -13,7 +13,7 @@ public class RaceWayKartApplication extends Application {
 
     @Override
     public void start(Stage appStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("karts-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("drivers-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         appStage.setTitle("RaceWayKart");
