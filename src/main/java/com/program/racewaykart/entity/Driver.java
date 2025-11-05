@@ -1,5 +1,7 @@
 package com.program.racewaykart.entity;
 
+import java.util.Objects;
+
 public class Driver {
 
     private int ID;
@@ -63,5 +65,18 @@ public class Driver {
 
     public void setCurrentKart(Kart currentKart) {
         this.currentKart = currentKart;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Driver driver = (Driver) object;
+        return ID == driver.ID && Objects.equals(surname, driver.surname) && Objects.equals(name, driver.name) && Objects.equals(patronymic, driver.patronymic) && Objects.equals(currentKart, driver.currentKart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, surname, name, patronymic, currentKart);
     }
 }

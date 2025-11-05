@@ -3,6 +3,7 @@ package com.program.racewaykart;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.program.racewaykart.entity.Driver;
@@ -82,7 +83,7 @@ public class KartsSceneController {
     @FXML
     private HBox upperHBox;
 
-    public static ArrayList<Kart> KARTS = new ArrayList<>();
+    public static final List<Kart> KARTS = new ArrayList<>();
 
     @FXML
     void initialize() {

@@ -1,5 +1,7 @@
 package com.program.racewaykart.entity;
 
+import java.util.Objects;
+
 public class Kart {
 
     private int ID;
@@ -29,5 +31,18 @@ public class Kart {
 
     public void setNumberOfKart(int numberOfKart) {
         this.numberOfKart = numberOfKart;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Kart kart = (Kart) object;
+        return ID == kart.ID && numberOfKart == kart.numberOfKart;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, numberOfKart);
     }
 }
