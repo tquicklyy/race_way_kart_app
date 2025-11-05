@@ -176,7 +176,7 @@
                                                 <String fx:value="id-header" />
                                              </styleClass>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="151.0" text="Фамилия">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Фамилия">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -188,7 +188,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="151.0" text="Имя">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Имя">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -200,7 +200,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="151.0" text="Отчество">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Отчество">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -212,7 +212,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="151.0" text="Номер карта">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Номер карта">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -249,7 +249,7 @@
                                                 <String fx:value="id-header" />
                                              </styleClass>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="151.0" text="Конников">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Конников">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -261,7 +261,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="151.0" text="Глеб">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Глеб">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -273,7 +273,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="151.0" text="Владимирович">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Владимирович">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -285,7 +285,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="151.0" text="22">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="22">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>

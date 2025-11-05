@@ -175,24 +175,26 @@ public class GroupsSceneController {
         Label groupNumberLabel = createGroupNumberLabel(group.getID());
 
         HBox headersHBox = createHBoxRow();
-        Label idHeader = createIDHeader();
+        Label numberHeader = createBlackWhiteCircleLabel("№");
+        Label idHeader = createBlackWhiteCircleLabel("ID");
         Label surnameHeader = createBlackLabelRow("Фамилия");
         Label nameHeader = createBlackLabelRow("Имя");
         Label patronymicHeader = createBlackLabelRow("Отчество");
         Label numberKartHeader = createBlackLabelRow("Номер карта");
-        headersHBox.getChildren().addAll(idHeader, surnameHeader, nameHeader, patronymicHeader, numberKartHeader);
+        headersHBox.getChildren().addAll(numberHeader, idHeader, surnameHeader, nameHeader, patronymicHeader, numberKartHeader);
 
         groupVBox.getChildren().addAll(groupNumberLabel, headersHBox);
 
         for (Driver driver: group.getDrivers()) {
             HBox dataHBox = createHBoxRow();
-            Label idDataLabel = createBlueIDLabelRow(String.valueOf(group.getDrivers().indexOf(driver) + 1));
+            Label numberDataLabel = createBlueWhiteCircleLabel(String.valueOf(group.getDrivers().indexOf(driver) + 1));
+            Label idDataLabel = createBlueWhiteCircleLabel(String.valueOf(driver.getID()));
             Label surnameDataLabel = createBlueLabelRow(driver.getSurname());
             Label nameDataLabel = createBlueLabelRow(driver.getName());
             Label patronymicDataLabel = createBlueLabelRow(driver.getPatronymic());
             Label numberKartDataLabel = createBlueLabelRow(String.valueOf(driver.getCurrentKart().getNumberOfKart()));
 
-            dataHBox.getChildren().addAll(idDataLabel, surnameDataLabel, nameDataLabel, patronymicDataLabel, numberKartDataLabel);
+            dataHBox.getChildren().addAll(numberDataLabel, idDataLabel, surnameDataLabel, nameDataLabel, patronymicDataLabel, numberKartDataLabel);
             groupVBox.getChildren().add(dataHBox);
         }
 
@@ -228,13 +230,13 @@ public class GroupsSceneController {
 
     HBox createHBoxRow() {
         HBox hBox = new HBox();
-        hBox.setSpacing(8);
+        hBox.setSpacing(4);
         VBox.setMargin(hBox, new Insets(0,0,5,0));
         return hBox;
     }
 
-    Label createIDHeader() {
-        Label label = new Label("ID");
+    Label createBlackWhiteCircleLabel(String text) {
+        Label label = new Label(text);
         label.getStyleClass().addAll("black-white-button", "id-header");
 
         label.setMinWidth(30);
@@ -245,7 +247,7 @@ public class GroupsSceneController {
         return label;
     }
 
-    Label createBlueIDLabelRow(String text) {
+    Label createBlueWhiteCircleLabel(String text) {
         Label label = new Label(text);
         label.getStyleClass().addAll("blue-white-button", "id-header");
 
@@ -261,9 +263,9 @@ public class GroupsSceneController {
         Label label = new Label(text);
         label.getStyleClass().addAll("black-white-button", "data-headers");
 
-        label.setMinWidth(160);
+        label.setMinWidth(155);
         label.setMinHeight(30);
-        label.setMaxWidth(160);
+        label.setMaxWidth(155);
         label.setMaxHeight(30);
 
         return label;
@@ -273,9 +275,9 @@ public class GroupsSceneController {
         Label label = new Label(text);
         label.getStyleClass().addAll("blue-white-button", "data-items");
 
-        label.setMinWidth(160);
+        label.setMinWidth(155);
         label.setMinHeight(35);
-        label.setMaxWidth(160);
+        label.setMaxWidth(155);
         label.setMaxHeight(35);
 
         return label;
