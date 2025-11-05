@@ -3,7 +3,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-.data
+out
+data
+src/main/java/com/program/racewaykart/Main.java
 
 ### IntelliJ IDEA ###
 .idea
