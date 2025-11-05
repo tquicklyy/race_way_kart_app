@@ -10,6 +10,8 @@ public class Driver {
 
     private String patronymic;
 
+    private Kart currentKart;
+
     public Driver(int ID, String surname, String name, String patronymic) {
         this.ID = ID;
         this.surname = surname;
@@ -53,5 +55,13 @@ public class Driver {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public Kart getCurrentKart() {
+        return currentKart;
+    }
+
+    public void setCurrentKart(Kart currentKart) {
+        this.currentKart = currentKart;
     }
 }
