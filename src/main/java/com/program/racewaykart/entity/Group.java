@@ -1,9 +1,10 @@
 package com.program.racewaykart.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group {
+public class Group implements Serializable {
 
     private int ID;
 

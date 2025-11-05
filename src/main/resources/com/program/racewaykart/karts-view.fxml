@@ -65,7 +65,7 @@
                         <String fx:value="label-button" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="saveSerialButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Сохранять">
+                  <Label fx:id="saveSerialButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#changeStatusOfDataSaving" prefHeight="41.0" prefWidth="125.0" text="Сохранять">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -101,7 +101,7 @@
                   </Label>
                   <HBox fx:id="headersTableHBox" alignment="CENTER_LEFT" prefHeight="4.0" prefWidth="533.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="ID">
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="№">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -355,7 +355,7 @@
                                     <Insets left="1.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="numberKartInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Номер карта" styleClass="input">
+                              <TextField fx:id="numberKartInput" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="206.0" promptText="Номер карта" styleClass="input">
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>

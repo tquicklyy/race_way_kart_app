@@ -73,7 +73,7 @@ public class GroupsSceneController {
     @FXML
     private VBox scrollPaneVBox;
 
-    public static final List<Group> GROUPS = new ArrayList<>();
+    public static List<Group> GROUPS = new ArrayList<>();
 
     @FXML
     void goToKartsScene() throws IOException {
@@ -87,6 +87,12 @@ public class GroupsSceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("drivers-view.fxml"));
         Scene driversScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(driversScene);
+    }
+
+    @FXML
+    void changeStatusOfDataSaving() {
+        RaceWayKartApplication.isDataSaving = !RaceWayKartApplication.isDataSaving;
+        updateSaveSerialButton();
     }
 
     @FXML
@@ -116,6 +122,7 @@ public class GroupsSceneController {
         }
 
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
+        updateSaveSerialButton();
     }
 
     void hideHeadersTableAndScrollPane(boolean isEmpty) {
@@ -295,6 +302,14 @@ public class GroupsSceneController {
             currentGroup.getFreeCarts().remove(kartToDriver);
 
             numberOfGroup++;
+        }
+    }
+
+    void updateSaveSerialButton() {
+        if(RaceWayKartApplication.isDataSaving) {
+            saveSerialButton.setText("Не сохранять");
+        } else {
+            saveSerialButton.setText("Сохранять");
         }
     }
 

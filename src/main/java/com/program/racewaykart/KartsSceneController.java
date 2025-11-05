@@ -83,7 +83,7 @@ public class KartsSceneController {
     @FXML
     private HBox upperHBox;
 
-    public static final List<Kart> KARTS = new ArrayList<>();
+    public static List<Kart> KARTS = new ArrayList<>();
 
     @FXML
     void initialize() {
@@ -96,6 +96,7 @@ public class KartsSceneController {
         }
 
         hideHeadersTableAndScrollPane(KARTS.isEmpty());
+        updateSaveSerialButton();
     }
 
     @FXML
@@ -110,6 +111,12 @@ public class KartsSceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("drivers-view.fxml"));
         Scene driversScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(driversScene);
+    }
+
+    @FXML
+    void changeStatusOfDataSaving() {
+        RaceWayKartApplication.isDataSaving = !RaceWayKartApplication.isDataSaving;
+        updateSaveSerialButton();
     }
 
     @FXML
@@ -236,6 +243,14 @@ public class KartsSceneController {
             if(kart.getNumberOfKart() == number) return false;
         }
         return true;
+    }
+
+    void updateSaveSerialButton() {
+        if(RaceWayKartApplication.isDataSaving) {
+            saveSerialButton.setText("Не сохранять");
+        } else {
+            saveSerialButton.setText("Сохранять");
+        }
     }
 
 }

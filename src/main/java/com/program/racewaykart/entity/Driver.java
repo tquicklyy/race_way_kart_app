@@ -1,8 +1,9 @@
 package com.program.racewaykart.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Driver {
+public class Driver implements Serializable {
 
     private int ID;
 
