@@ -1,5 +1,7 @@
 package com.program.racewaykart;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 public class GroupsSceneController {
 
@@ -111,6 +114,79 @@ public class GroupsSceneController {
     void resetAllData() {
         RaceWayKartApplication.resetAllData();
         initialize();
+    }
+
+    @FXML
+    void onSaveInTxtButton() {
+        if(GROUPS.isEmpty()) {
+            AlertHelper.showErrorAlert("Ошибка сохранения", "Ошибка сохранения данных", "Отсутствуют группы для сохранения в текстовый файл.");
+            return;
+        }
+
+        FileChooser saveTxtChooser = new FileChooser();
+        saveTxtChooser.setTitle("Сохранить группы");
+
+        FileChooser.ExtensionFilter filterTxt = new FileChooser.ExtensionFilter("Текстовые файлы (*.txt)", "*.txt");
+        saveTxtChooser.getExtensionFilters().clear();
+        saveTxtChooser.getExtensionFilters().add(filterTxt);
+
+        File txtFileToSave = saveTxtChooser.showSaveDialog(RaceWayKartApplication.appStage);
+
+        if(txtFileToSave != null) {
+            try (FileWriter fw = new FileWriter(txtFileToSave)) {
+
+            } catch (Exception e) {
+                AlertHelper.showErrorAlert("Ошибка сохранения", "Ошибка сохранения данных", "Не удалось сохранить данные в файл .txt");
+            }
+
+            int lengthOfNumber = 2;
+            int lengthOfID = 2;
+            int lengthOfSurname = "Фамилия".length();
+            int lengthOfName = "Имя".length();
+            int lengthOfPatronymic = "Отсутствует".length();
+            int lengthOfNumberOfCart = "Номер карта".length();
+
+            for (Group group: GROUPS) {
+                for (Driver driver: group.getDrivers()) {
+                    if(String.valueOf(group.getID()).length() > lengthOfNumber) lengthOfNumber = String.valueOf(group.getID()).length();
+                    if(String.valueOf(driver.getID()).length() > lengthOfID) lengthOfID = String.valueOf(driver.getID()).length();
+                    if(driver.getSurname().length() > lengthOfSurname) lengthOfSurname = driver.getSurname().length();
+                    if(driver.getName().length() > lengthOfName) lengthOfName = driver.getName().length();
+                    if(driver.getPatronymic().length() > lengthOfPatronymic) lengthOfPatronymic = driver.getPatronymic().length();
+                }
+            }
+
+            try(FileWriter writer = new FileWriter(txtFileToSave, true)) {
+                String mainHeader = "Группы." + System.lineSeparator() + System.lineSeparator();
+                writer.write(mainHeader);
+
+                for (Group group: GROUPS) {
+                    String header = String.format("Группа №%s", group.getID()) + System.lineSeparator();
+                    String headerItems = String.format("%-" + lengthOfNumber +"s", "№")
+                            + "  " + String.format("%-" + lengthOfID +"s", "ID")
+                            + "   " + String.format("%-" + lengthOfSurname +"s", "Фамилия")
+                            + "   " + String.format("%-" + lengthOfName +"s", "Имя")
+                            + "   " + String.format("%-" + lengthOfPatronymic +"s", "Отчество")
+                            + "   " + String.format("%-" + lengthOfNumberOfCart +"s", "Номер карта") + System.lineSeparator();
+                    writer.write(header);
+                    writer.write(headerItems);
+
+                    for(Driver driver: group.getDrivers()) {
+                        String dataItems = String.format("%-" + lengthOfNumber +"s", group.getDrivers().indexOf(driver) + 1)
+                                + "   " + String.format("%-" + lengthOfID +"s", group.getID())
+                                + "   " + String.format("%-" + lengthOfSurname +"s", driver.getSurname())
+                                + "   " + String.format("%-" + lengthOfName +"s", driver.getName())
+                                + "   " + String.format("%-" + lengthOfPatronymic +"s", driver.getPatronymic())
+                                + "   " + String.format("%-" + lengthOfNumberOfCart +"s", driver.getCurrentKart().getNumberOfKart()) + System.lineSeparator();
+
+                        writer.write(dataItems);
+                    }
+                    writer.write(System.lineSeparator());
+                }
+            } catch (Exception e) {
+                AlertHelper.showErrorAlert("Ошибка сохранения", "Ошибка сохранения данных", "Не удалось сохранить данные в файл .txt");
+            }
+        }
     }
 
     @FXML
