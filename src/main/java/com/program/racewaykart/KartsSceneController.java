@@ -98,6 +98,13 @@ public class KartsSceneController {
     }
 
     @FXML
+    void goToGroupsScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("groups-view.fxml"));
+        Scene groupsScene = new Scene(loader.load());
+        RaceWayKartApplication.appStage.setScene(groupsScene);
+    }
+
+    @FXML
     void goToDriversScene() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("drivers-view.fxml"));
         Scene driversScene = new Scene(loader.load());

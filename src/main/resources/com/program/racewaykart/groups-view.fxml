@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.DriversSceneController">
+<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.GroupsSceneController">
    <children>
       <HBox fx:id="upperHBox" prefHeight="75.0" prefWidth="785.0">
          <padding>
@@ -35,7 +35,7 @@
                         <String fx:value="label-button" />
                      </styleClass>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Водители">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#goToDriversScene" prefHeight="41.0" prefWidth="125.0" text="Водители">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -88,7 +88,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="41.0" prefWidth="320.0" spacing="15.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addData" prefHeight="41.0" prefWidth="160.0" text="Создать группы">
+                        <Label fx:id="createGroupsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="160.0" text="Создать группы">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -98,7 +98,7 @@
                               <String fx:value="label-button" />
                            </styleClass>
                         </Label>
-                        <TextField fx:id="surnameInput" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="160.0" promptText="Число групп" styleClass="input" />
+                        <TextField fx:id="numberOfGroupsInput" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="160.0" promptText="Число групп" styleClass="input" />
                      </children>
                   </HBox>
                   <ImageView fitHeight="42.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -106,7 +106,7 @@
                         <Image url="@../../../images/black-white-flag.png" />
                      </image>
                   </ImageView>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#addData" prefHeight="41.0" prefWidth="333.0" text="Сохранить в .txt" HBox.hgrow="ALWAYS">
+                  <Label fx:id="saveInTxtButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="333.0" text="Сохранить в .txt" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -121,7 +121,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <VBox fx:id="tableVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="table-vbox" VBox.vgrow="ALWAYS">
+            <VBox fx:id="groupsVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="groups-vbox" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -137,7 +137,7 @@
                   </Label>
                   <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="364.0" prefWidth="511.0" vbarPolicy="ALWAYS">
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                        <VBox fx:id="scrollPaneVBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="717.0" spacing="10.0">
                            <children>
                               <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="717.0" styleClass="table-group">
                                  <children>

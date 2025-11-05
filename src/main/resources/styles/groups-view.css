@@ -50,12 +50,12 @@
     -fx-border-width: 2.5px;
 }
 
-.table-vbox {
+.groups-vbox {
     -fx-border-width: 3px;
     -fx-border-color: white;
 }
 
-.table-vbox * {
+.groups-vbox * {
     -fx-text-fill: black;
 }
 

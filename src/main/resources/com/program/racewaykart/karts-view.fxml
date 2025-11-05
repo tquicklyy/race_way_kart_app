@@ -25,7 +25,7 @@
             </ImageView>
             <HBox fx:id="headerButtonsHBox" alignment="CENTER" prefHeight="70.0" prefWidth="772.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="groupsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Группы">
+                  <Label fx:id="groupsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#goToGroupsScene" prefHeight="41.0" prefWidth="125.0" text="Группы">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
