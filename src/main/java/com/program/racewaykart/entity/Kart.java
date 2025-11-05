@@ -5,25 +5,10 @@ import java.util.Objects;
 
 public class Kart implements Serializable {
 
-    private int ID;
-
     private int numberOfKart;
-
-    public Kart(int ID, int numberOfKart) {
-        this.ID = ID;
-        this.numberOfKart = numberOfKart;
-    }
 
     public Kart(int numberOfKart) {
         this.numberOfKart = numberOfKart;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public int getNumberOfKart() {
@@ -39,11 +24,11 @@ public class Kart implements Serializable {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Kart kart = (Kart) object;
-        return ID == kart.ID && numberOfKart == kart.numberOfKart;
+        return numberOfKart == kart.numberOfKart;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, numberOfKart);
+        return Objects.hashCode(numberOfKart);
     }
 }

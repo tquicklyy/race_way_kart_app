@@ -291,9 +291,6 @@
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
                               </TextField>
                               <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Имя">
                                  <padding>
@@ -320,9 +317,6 @@
                                  <VBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
                               </TextField>
                            </children>
                         </VBox>

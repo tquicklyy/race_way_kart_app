@@ -88,13 +88,7 @@ public class KartsSceneController {
 
     @FXML
     void initialize() {
-        dataVBox.getChildren().clear();
-
-        if(!KARTS.isEmpty()) {
-            for(Kart kart: KARTS) {
-                createRow(kart);
-            }
-        }
+        displayDataItems();
 
         hideHeadersTableAndScrollPane(KARTS.isEmpty());
         updateSaveSerialButton();
@@ -151,9 +145,19 @@ public class KartsSceneController {
         clearInputs();
     }
 
+    void displayDataItems() {
+        dataVBox.getChildren().clear();
+
+        if(!KARTS.isEmpty()) {
+            for(Kart kart: KARTS) {
+                createRow(kart);
+            }
+        }
+    }
+
     void createRow(Kart newKart) {
         HBox rowHBox = createHBoxRow();
-        TextField textFieldId = createIDTextFieldRow(newKart.getID());
+        TextField textFieldId = createIDTextFieldRow(KARTS.indexOf(newKart) + 1);
         TextField textFieldNumberOfCart = createBlueTextFieldRow(String.valueOf(newKart.getNumberOfKart()));
         Label labelDelete = createDeleteButtonRow(rowHBox, newKart);
 
@@ -208,6 +212,7 @@ public class KartsSceneController {
             Platform.runLater(() -> {
                 dataVBox.getChildren().remove(parentToDelete);
                 KARTS.remove(kartToDelete);
+                displayDataItems();
                 hideHeadersTableAndScrollPane(KARTS.isEmpty());
             });
         });
@@ -234,7 +239,7 @@ public class KartsSceneController {
     }
 
     Kart addDataToKarts() {
-        Kart newKart = new Kart(KARTS.size() + 1, Integer.parseInt(numberKartInput.getText()));
+        Kart newKart = new Kart(Integer.parseInt(numberKartInput.getText()));
         KARTS.add(newKart);
         return newKart;
     }

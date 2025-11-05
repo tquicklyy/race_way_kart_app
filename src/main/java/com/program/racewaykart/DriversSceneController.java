@@ -99,13 +99,7 @@ public class DriversSceneController {
 
     @FXML
     void initialize() {
-        dataVBox.getChildren().clear();
-
-        if(!DRIVERS.isEmpty()) {
-            for(Driver driver: DRIVERS) {
-                createRow(driver);
-            }
-        }
+        displayDataItems();
 
         hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
         updateSaveSerialButton();
@@ -155,6 +149,17 @@ public class DriversSceneController {
         createRow(newDriver);
         hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
         clearInputs();
+        displayDataItems();
+    }
+
+    void displayDataItems() {
+        dataVBox.getChildren().clear();
+
+        if(!DRIVERS.isEmpty()) {
+            for(Driver driver: DRIVERS) {
+                createRow(driver);
+            }
+        }
     }
 
     void createRow(Driver newDriver) {
@@ -216,7 +221,9 @@ public class DriversSceneController {
             Platform.runLater(() -> {
                 dataVBox.getChildren().remove(parentToDelete);
                 DRIVERS.remove(driverToDelete);
+                displayDataItems();
                 hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+
             });
         });
 
@@ -244,14 +251,23 @@ public class DriversSceneController {
     }
 
     Driver addDataToDrivers() {
-        Driver newDriver = new Driver(DRIVERS.size() + 1, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
-        DRIVERS.add(newDriver);
+        ArrayList<Integer> takenId = new ArrayList<>();
+        for(Driver driver: DRIVERS) {
+            takenId.add(driver.getID());
+        }
+
+        int IDOfDriver = 1;
+        while (takenId.contains(IDOfDriver)) {
+            IDOfDriver++;
+        }
+
+        Driver newDriver = new Driver(IDOfDriver, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
+        DRIVERS.add(IDOfDriver - 1, newDriver);
         return newDriver;
     }
 
     boolean isValidNameSurnamePatronymic(String surname, String name) {
         return !surname.isBlank() && !name.isBlank();
-
     }
 
     void updateSaveSerialButton() {
