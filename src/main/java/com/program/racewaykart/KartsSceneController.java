@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -152,42 +153,46 @@ public class KartsSceneController {
 
     void createRow(Kart newKart) {
         HBox rowHBox = createHBoxRow();
-        Label labelID = createIDLabelRow(newKart.getID());
-        Label labelNumberOfCart = createBlueLabelRow(String.valueOf(newKart.getNumberOfKart()));
+        TextField textFieldId = createIDTextFieldRow(newKart.getID());
+        TextField textFieldNumberOfCart = createBlueTextFieldRow(String.valueOf(newKart.getNumberOfKart()));
         Label labelDelete = createDeleteButtonRow(rowHBox, newKart);
 
-        rowHBox.getChildren().addAll(labelID, labelNumberOfCart, labelDelete);
+        rowHBox.getChildren().addAll(textFieldId, textFieldNumberOfCart, labelDelete);
         dataVBox.getChildren().add(rowHBox);
     }
 
     HBox createHBoxRow() {
-        return new HBox();
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        return hBox;
     }
 
-    Label createIDLabelRow(int ID) {
-        Label label = new Label(String.valueOf(ID));
-        label.getStyleClass().addAll("blue-white-button", "id-header");
+    TextField createIDTextFieldRow(int ID) {
+        TextField textField = new TextField(String.valueOf(ID));
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("blue-white-button", "id-header", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(30);
-        label.setMinHeight(30);
-        label.setMaxWidth(30);
-        label.setMaxHeight(30);
+        textField.setMinWidth(30);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(30);
+        textField.setMaxHeight(30);
 
-        HBox.setMargin(label, new Insets(0,5,0,0));
-        return label;
+        HBox.setMargin(textField, new Insets(0,5,0,0));
+        return textField;
     }
 
-    Label createBlueLabelRow(String text) {
-        Label label = new Label(text);
-        label.getStyleClass().addAll("blue-white-button", "data-items");
+    TextField createBlueTextFieldRow(String text) {
+        TextField textField = new TextField(text);
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(421);
-        label.setMinHeight(35);
-        label.setMaxWidth(421);
-        label.setMaxHeight(35);
+        textField.setMinWidth(421);
+        textField.setMinHeight(35);
+        textField.setMaxWidth(421);
+        textField.setMaxHeight(35);
 
-        HBox.setMargin(label, new Insets(0,5,0,0));
-        return label;
+        HBox.setMargin(textField, new Insets(0,5,0,0));
+        return textField;
     }
 
     Label createDeleteButtonRow(HBox parentToDelete, Kart kartToDelete) {

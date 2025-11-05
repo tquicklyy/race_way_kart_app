@@ -3,8 +3,11 @@
     src: url("../fonts/Inter-VariableFont_opsz,wght.ttf");
 }
 
-.general-vbox {
+* {
     -fx-font-family: "Inter";
+}
+
+.general-vbox {
     -fx-background-image: url("../images/background-image.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
@@ -63,6 +66,11 @@
    -fx-border-width: 2.5px;
 }
 
+.text-field-clear-padding-cursor-default {
+   -fx-padding: 0;
+   -fx-cursor: default;
+}
+
 .id-header {
    -fx-font-size: 16px;
    -fx-alignment: center;
@@ -83,6 +91,7 @@
 
 .label-input {
     -fx-font-size: 16px;
+    -fx-padding: 0 0 0 5;
 }
 
 .input {

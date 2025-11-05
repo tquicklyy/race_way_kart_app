@@ -126,101 +126,109 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="45.0" minWidth="125.0" prefHeight="45.0" prefWidth="923.0" text="Группы">
+                  <TextField editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="45.0" minWidth="125.0" prefHeight="45.0" prefWidth="923.0" text="Группы">
                      <font>
                         <Font name="Cambria Math" size="29.0" />
                      </font>
                      <styleClass>
                         <String fx:value="black-white-button" />
+                        <String fx:value="text-field-clear-padding-cursor-default" />
                         <String fx:value="table-header" />
                      </styleClass>
-                  </Label>
+                  </TextField>
                   <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="364.0" prefWidth="511.0" vbarPolicy="ALWAYS">
                      <content>
                         <VBox fx:id="scrollPaneVBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="717.0" spacing="10.0">
                            <children>
                               <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="717.0" styleClass="table-group">
                                  <children>
-                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="125.0" prefHeight="30.0" prefWidth="701.0" text="Группа №1">
+                                    <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="125.0" prefHeight="30.0" prefWidth="701.0" text="Группа №1">
                                        <font>
                                           <Font name="Cambria Math" size="29.0" />
                                        </font>
                                        <styleClass>
                                           <String fx:value="black-white-button" />
+                                          <String fx:value="text-field-clear-padding-cursor-default" />
                                           <String fx:value="group-header" />
                                        </styleClass>
                                        <VBox.margin>
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
-                                    </Label>
+                                    </TextField>
                                     <HBox fx:id="headersTableHBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="748.0" spacing="4.0">
                                        <children>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="№">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="№">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="id-header" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="ID">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="ID">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="id-header" />
                                              </styleClass>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Фамилия">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Фамилия">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="data-headers" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Имя">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Имя">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="data-headers" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Отчество">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Отчество">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="data-headers" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Номер карта">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="155.0" prefHeight="30.0" prefWidth="155.0" text="Номер карта">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="black-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="data-headers" />
                                              </styleClass>
-                                          </Label>
+                                          </TextField>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="5.0" />
@@ -228,72 +236,78 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="757.0" spacing="4.0">
                                        <children>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="1">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="1">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="id-header" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="2">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="2">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                                 <String fx:value="id-header" />
                                              </styleClass>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Конников">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Конников">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
                                                 <String fx:value="data-items" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Глеб">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Глеб">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
-                                                <String fx:value="data-headers" />
+                                                <String fx:value="data-items" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Владимирович">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Владимирович">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
-                                                <String fx:value="data-headers" />
+                                                <String fx:value="data-items" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                              </styleClass>
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Label>
-                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="22">
+                                          </TextField>
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="22">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
                                              <styleClass>
                                                 <String fx:value="blue-white-button" />
-                                                <String fx:value="data-headers" />
+                                                <String fx:value="data-items" />
+                                                <String fx:value="text-field-clear-padding-cursor-default" />
                                              </styleClass>
-                                          </Label>
+                                          </TextField>
                                        </children>
                                     </HBox>
                                  </children>

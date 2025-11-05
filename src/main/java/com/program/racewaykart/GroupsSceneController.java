@@ -17,11 +17,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class GroupsSceneController {
 
@@ -172,29 +174,29 @@ public class GroupsSceneController {
 
     void createGroupTable(Group group) {
         VBox groupVBox = createGroupVBox();
-        Label groupNumberLabel = createGroupNumberLabel(group.getID());
+        TextField groupNumberTextField = createGroupNumberTextField(group.getID());
 
         HBox headersHBox = createHBoxRow();
-        Label numberHeader = createBlackWhiteCircleLabel("№");
-        Label idHeader = createBlackWhiteCircleLabel("ID");
-        Label surnameHeader = createBlackLabelRow("Фамилия");
-        Label nameHeader = createBlackLabelRow("Имя");
-        Label patronymicHeader = createBlackLabelRow("Отчество");
-        Label numberKartHeader = createBlackLabelRow("Номер карта");
+        TextField numberHeader = createBlackWhiteCircleTextField("№");
+        TextField idHeader = createBlackWhiteCircleTextField("ID");
+        TextField surnameHeader = createBlackTextFieldRow("Фамилия");
+        TextField nameHeader = createBlackTextFieldRow("Имя");
+        TextField patronymicHeader = createBlackTextFieldRow("Отчество");
+        TextField numberKartHeader = createBlackTextFieldRow("Номер карта");
         headersHBox.getChildren().addAll(numberHeader, idHeader, surnameHeader, nameHeader, patronymicHeader, numberKartHeader);
 
-        groupVBox.getChildren().addAll(groupNumberLabel, headersHBox);
+        groupVBox.getChildren().addAll(groupNumberTextField, headersHBox);
 
         for (Driver driver: group.getDrivers()) {
             HBox dataHBox = createHBoxRow();
-            Label numberDataLabel = createBlueWhiteCircleLabel(String.valueOf(group.getDrivers().indexOf(driver) + 1));
-            Label idDataLabel = createBlueWhiteCircleLabel(String.valueOf(driver.getID()));
-            Label surnameDataLabel = createBlueLabelRow(driver.getSurname());
-            Label nameDataLabel = createBlueLabelRow(driver.getName());
-            Label patronymicDataLabel = createBlueLabelRow(driver.getPatronymic());
-            Label numberKartDataLabel = createBlueLabelRow(String.valueOf(driver.getCurrentKart().getNumberOfKart()));
+            TextField numberDataTextField = createBlueWhiteCircleTextField(String.valueOf(group.getDrivers().indexOf(driver) + 1));
+            TextField idDataTextField = createBlueWhiteCircleTextField(String.valueOf(driver.getID()));
+            TextField surnameDataTextField = createBlueTextFieldRow(driver.getSurname());
+            TextField nameDataTextField = createBlueTextFieldRow(driver.getName());
+            TextField patronymicDataTextField = createBlueTextFieldRow(driver.getPatronymic());
+            TextField numberKartDataTextField = createBlueTextFieldRow(String.valueOf(driver.getCurrentKart().getNumberOfKart()));
 
-            dataHBox.getChildren().addAll(numberDataLabel, idDataLabel, surnameDataLabel, nameDataLabel, patronymicDataLabel, numberKartDataLabel);
+            dataHBox.getChildren().addAll(numberDataTextField, idDataTextField, surnameDataTextField, nameDataTextField, patronymicDataTextField, numberKartDataTextField);
             groupVBox.getChildren().add(dataHBox);
         }
 
@@ -215,72 +217,78 @@ public class GroupsSceneController {
         return groupVBox;
     }
 
-    Label createGroupNumberLabel(int number) {
-        Label label = new Label(String.format("Группа №%d", number));
-        label.getStyleClass().addAll("black-white-button", "group-header");
+    TextField createGroupNumberTextField(int number) {
+        TextField textField = new TextField(String.format("Группа №%d", number));
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("black-white-button", "group-header", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(701);
-        label.setMinHeight(30);
-        label.setMaxWidth(701);
-        label.setMaxHeight(30);
+        textField.setMinWidth(701);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(701);
+        textField.setMaxHeight(30);
 
-        VBox.setMargin(label, new Insets(0,0,5,0));
-        return label;
+        VBox.setMargin(textField, new Insets(0,0,5,0));
+        return textField;
     }
 
     HBox createHBoxRow() {
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_LEFT);
         hBox.setSpacing(4);
         VBox.setMargin(hBox, new Insets(0,0,5,0));
         return hBox;
     }
 
-    Label createBlackWhiteCircleLabel(String text) {
-        Label label = new Label(text);
-        label.getStyleClass().addAll("black-white-button", "id-header");
+    TextField createBlackWhiteCircleTextField(String text) {
+        TextField textField = new TextField(text);
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("black-white-button", "id-header", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(30);
-        label.setMinHeight(30);
-        label.setMaxWidth(30);
-        label.setMaxHeight(30);
+        textField.setMinWidth(30);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(30);
+        textField.setMaxHeight(30);
 
-        return label;
+        return textField;
     }
 
-    Label createBlueWhiteCircleLabel(String text) {
-        Label label = new Label(text);
-        label.getStyleClass().addAll("blue-white-button", "id-header");
+    TextField createBlueWhiteCircleTextField(String text) {
+        TextField textField = new TextField(text);
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("blue-white-button", "id-header", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(30);
-        label.setMinHeight(30);
-        label.setMaxWidth(30);
-        label.setMaxHeight(30);
+        textField.setMinWidth(30);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(30);
+        textField.setMaxHeight(30);
 
-        return label;
+        return textField;
     }
 
-    Label createBlackLabelRow(String text) {
-        Label label = new Label(text);
-        label.getStyleClass().addAll("black-white-button", "data-headers");
+    TextField createBlackTextFieldRow(String text) {
+        TextField textField = new TextField(text);
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("black-white-button", "data-headers", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(155);
-        label.setMinHeight(30);
-        label.setMaxWidth(155);
-        label.setMaxHeight(30);
+        textField.setMinWidth(155);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(155);
+        textField.setMaxHeight(30);
 
-        return label;
+        return textField;
     }
 
-    Label createBlueLabelRow(String text) {
-        Label label = new Label(text);
-        label.getStyleClass().addAll("blue-white-button", "data-items");
+    TextField createBlueTextFieldRow(String text) {
+        TextField textField = new TextField(text);
+        textField.setEditable(false);
+        textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
 
-        label.setMinWidth(155);
-        label.setMinHeight(35);
-        label.setMaxWidth(155);
-        label.setMaxHeight(35);
+        textField.setMinWidth(155);
+        textField.setMinHeight(35);
+        textField.setMaxWidth(155);
+        textField.setMaxHeight(35);
 
-        return label;
+        return textField;
     }
 
     void addDataToGroups(int numberOfGroups) {
