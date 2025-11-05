@@ -55,7 +55,7 @@
                         <String fx:value="label-button" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="resetAllButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Сбросить всё">
+                  <Label fx:id="resetAllButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetAllData" prefHeight="41.0" prefWidth="125.0" text="Сбросить всё">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>

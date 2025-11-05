@@ -124,6 +124,12 @@ public class DriversSceneController {
     }
 
     @FXML
+    void resetAllData() {
+        RaceWayKartApplication.resetAllData();
+        initialize();
+    }
+
+    @FXML
     void resetData(MouseEvent event) {
         DRIVERS.clear();
         dataVBox.getChildren().clear();

@@ -113,6 +113,12 @@ public class KartsSceneController {
     }
 
     @FXML
+    void resetAllData() {
+        RaceWayKartApplication.resetAllData();
+        initialize();
+    }
+
+    @FXML
     void resetData() {
         KARTS.clear();
         dataVBox.getChildren().clear();

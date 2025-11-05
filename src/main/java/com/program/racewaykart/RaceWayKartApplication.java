@@ -32,6 +32,12 @@ public class RaceWayKartApplication extends Application {
         appStage.show();
     }
 
+    public static void resetAllData() {
+        DriversSceneController.DRIVERS.clear();
+        KartsSceneController.KARTS.clear();
+        GroupsSceneController.GROUPS.clear();
+    }
+
     public static void main(String[] args) {
         launch();
     }

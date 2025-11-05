@@ -100,6 +100,12 @@ public class GroupsSceneController {
     }
 
     @FXML
+    void resetAllData() {
+        RaceWayKartApplication.resetAllData();
+        initialize();
+    }
+
+    @FXML
     void initialize() {
         scrollPaneVBox.getChildren().clear();
 
