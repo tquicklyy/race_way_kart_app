@@ -20,7 +20,7 @@ public class RaceWayKartApplication extends Application {
     public static boolean isDataSaving;
 
     @Override
-    public void start(Stage stage) throws IOException, ClassNotFoundException {
+    public void start(Stage stage) throws IOException {
         File dataDir = new File("data");
         dataDir.mkdirs();
 

@@ -3,11 +3,9 @@ package com.program.racewaykart;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
@@ -19,61 +17,21 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 public class GroupsSceneController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Label createGroupsButton;
-
-    @FXML
-    private VBox generalVBox;
-
-    @FXML
-    private Label groupsButton;
-
-    @FXML
-    private VBox groupsVBox;
-
-    @FXML
-    private HBox headerButtonsHBox;
-
-    @FXML
-    private Label kartsButton;
-
-    @FXML
-    private ImageView logoImage;
-
-    @FXML
     private TextField numberOfGroupsInput;
-
-    @FXML
-    private Label resetAllButton;
-
-    @FXML
-    private Label saveInTxtButton;
 
     @FXML
     private Label saveSerialButton;
 
     @FXML
     private ScrollPane scrollPane;
-
-    @FXML
-    private HBox upperHBox;
 
     @FXML
     private VBox scrollPaneVBox;
@@ -134,7 +92,7 @@ public class GroupsSceneController {
 
         if(txtFileToSave != null) {
             try (FileWriter fw = new FileWriter(txtFileToSave)) {
-
+                fw.write("");
             } catch (Exception e) {
                 AlertHelper.showErrorAlert("Ошибка сохранения", "Ошибка сохранения данных", "Не удалось сохранить данные в файл .txt");
             }
@@ -161,7 +119,7 @@ public class GroupsSceneController {
                 writer.write(mainHeader);
 
                 for (Group group: GROUPS) {
-                    String header = String.format("Группа №%s", group.getID()) + System.lineSeparator();
+                    String header = String.format("Группа №%s.", group.getID()) + System.lineSeparator();
                     String headerItems = String.format("%-" + lengthOfNumber +"s", "№")
                             + "  " + String.format("%-" + lengthOfID +"s", "ID")
                             + "   " + String.format("%-" + lengthOfSurname +"s", "Фамилия")

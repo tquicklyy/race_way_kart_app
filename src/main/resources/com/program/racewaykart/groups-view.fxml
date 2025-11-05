@@ -11,21 +11,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="generalVBox" alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.GroupsSceneController">
+<VBox alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.GroupsSceneController">
    <children>
-      <HBox fx:id="upperHBox" prefHeight="75.0" prefWidth="785.0">
+      <HBox prefHeight="75.0" prefWidth="785.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <ImageView fx:id="logoImage" fitHeight="71.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="71.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/logo.png" />
                </image>
             </ImageView>
-            <HBox fx:id="headerButtonsHBox" alignment="CENTER" prefHeight="70.0" prefWidth="772.0" spacing="15.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="772.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="groupsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Группы">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" prefHeight="41.0" prefWidth="125.0" text="Группы">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -45,7 +45,7 @@
                         <String fx:value="label-button" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="kartsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#goToKartsScene" prefHeight="41.0" prefWidth="125.0" text="Карты">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#goToKartsScene" prefHeight="41.0" prefWidth="125.0" text="Карты">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -55,7 +55,7 @@
                         <String fx:value="label-button" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="resetAllButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetAllData" prefHeight="41.0" prefWidth="125.0" text="Сбросить всё">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#resetAllData" prefHeight="41.0" prefWidth="125.0" text="Сбросить всё">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -88,7 +88,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="41.0" prefWidth="320.0" spacing="15.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="createGroupsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#createGroups" prefHeight="41.0" prefWidth="160.0" text="Создать группы">
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#createGroups" prefHeight="41.0" prefWidth="160.0" text="Создать группы">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -106,7 +106,7 @@
                         <Image url="@../../../images/black-white-flag.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="saveInTxtButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#onSaveInTxtButton" prefHeight="41.0" prefWidth="333.0" text="Сохранить в .txt" HBox.hgrow="ALWAYS">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#onSaveInTxtButton" prefHeight="41.0" prefWidth="333.0" text="Сохранить в .txt" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
@@ -121,7 +121,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <VBox fx:id="groupsVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="groups-vbox" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="groups-vbox" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -155,7 +155,7 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <HBox fx:id="headersTableHBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="748.0" spacing="4.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="748.0" spacing="4.0">
                                        <children>
                                           <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="№">
                                              <font>
@@ -249,7 +249,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="2">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="1">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -259,7 +259,7 @@
                                                 <String fx:value="id-header" />
                                              </styleClass>
                                           </TextField>
-                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Конников">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Пример">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -272,7 +272,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Глеб">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Пример">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -285,7 +285,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Владимирович">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="Пример">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>
@@ -298,7 +298,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </TextField>
-                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="22">
+                                          <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="35.0" minWidth="155.0" prefHeight="35.0" prefWidth="155.0" text="1">
                                              <font>
                                                 <Font name="Arial" size="29.0" />
                                              </font>

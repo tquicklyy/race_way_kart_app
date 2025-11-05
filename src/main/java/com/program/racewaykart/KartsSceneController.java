@@ -1,12 +1,9 @@
 package com.program.racewaykart;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Kart;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -17,72 +14,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class KartsSceneController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Label addDataButton;
-
-    @FXML
-    private VBox addDataVBox;
-
-    @FXML
-    private HBox centerHBox;
-
-    @FXML
     private VBox dataVBox;
-
-    @FXML
-    private VBox generalVBox;
-
-    @FXML
-    private Label groupsButton;
-
-    @FXML
-    private Label groupsButton3111;
-
-    @FXML
-    private HBox headerButtonsHBox;
 
     @FXML
     private HBox headersTableHBox;
 
     @FXML
-    private Label kartsButton;
-
-    @FXML
-    private ImageView logoImage;
-
-    @FXML
     private TextField numberKartInput;
-
-    @FXML
-    private Label resetAllButton;
-
-    @FXML
-    private Label resetKartsButton;
 
     @FXML
     private Label saveSerialButton;
 
     @FXML
     private ScrollPane scrollPane;
-
-    @FXML
-    private VBox tableVBox;
-
-    @FXML
-    private HBox upperHBox;
 
     public static List<Kart> KARTS = new ArrayList<>();
 
@@ -208,14 +158,12 @@ public class KartsSceneController {
         label.setMaxWidth(30);
         label.setMaxHeight(30);
 
-        label.setOnMouseClicked(_ -> {
-            Platform.runLater(() -> {
-                dataVBox.getChildren().remove(parentToDelete);
-                KARTS.remove(kartToDelete);
-                displayDataItems();
-                hideHeadersTableAndScrollPane(KARTS.isEmpty());
-            });
-        });
+        label.setOnMouseClicked(_ -> Platform.runLater(() -> {
+            dataVBox.getChildren().remove(parentToDelete);
+            KARTS.remove(kartToDelete);
+            displayDataItems();
+            hideHeadersTableAndScrollPane(KARTS.isEmpty());
+        }));
 
         return label;
     }

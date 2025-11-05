@@ -1,84 +1,35 @@
 package com.program.racewaykart;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.program.racewaykart.entity.Driver;
-import com.program.racewaykart.entity.Kart;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 
 public class DriversSceneController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Label addDataButton;
-
-    @FXML
-    private VBox addDataVBox;
-
-    @FXML
-    private HBox centerHBox;
 
     @FXML
     private VBox dataVBox;
 
     @FXML
-    private VBox generalVBox;
-
-    @FXML
-    private Label groupsButton;
-
-    @FXML
-    private Label groupsButton3111;
-
-    @FXML
-    private Label groupsButton31111;
-
-    @FXML
-    private HBox headerButtonsHBox;
-
-    @FXML
     private HBox headersTableHBox;
-
-    @FXML
-    private Label kartsButton;
-
-    @FXML
-    private ImageView logoImage;
 
     @FXML
     private TextField nameInput;
 
     @FXML
     private TextField patronymicInput;
-
-    @FXML
-    private Label resetAllButton;
-
-    @FXML
-    private Label resetDriversButton;
 
     @FXML
     private Label saveSerialButton;
@@ -88,12 +39,6 @@ public class DriversSceneController {
 
     @FXML
     private TextField surnameInput;
-
-    @FXML
-    private VBox tableVBox;
-
-    @FXML
-    private HBox upperHBox;
 
     public static List<Driver> DRIVERS = new ArrayList<>();
 
@@ -132,14 +77,14 @@ public class DriversSceneController {
     }
 
     @FXML
-    void resetData(MouseEvent event) {
+    void resetData() {
         DRIVERS.clear();
         dataVBox.getChildren().clear();
         hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
     }
 
     @FXML
-    void addData(MouseEvent event) {
+    void addData() {
         if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText())) {
             AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления водителя.", "Данные о водителе введены некорректно.");
             return;
@@ -217,15 +162,13 @@ public class DriversSceneController {
         label.setMaxWidth(30);
         label.setMaxHeight(30);
 
-        label.setOnMouseClicked(_ -> {
-            Platform.runLater(() -> {
-                dataVBox.getChildren().remove(parentToDelete);
-                DRIVERS.remove(driverToDelete);
-                displayDataItems();
-                hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+        label.setOnMouseClicked(_ -> Platform.runLater(() -> {
+            dataVBox.getChildren().remove(parentToDelete);
+            DRIVERS.remove(driverToDelete);
+            displayDataItems();
+            hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
 
-            });
-        });
+        }));
 
         return label;
     }
