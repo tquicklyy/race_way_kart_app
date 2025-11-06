@@ -126,7 +126,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
                <children>
-                  <TextField editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="45.0" minWidth="125.0" prefHeight="45.0" prefWidth="923.0" text="Группы">
+                  <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="45.0" minWidth="125.0" prefHeight="45.0" prefWidth="923.0" text="Группы">
                      <font>
                         <Font name="Cambria Math" size="29.0" />
                      </font>
