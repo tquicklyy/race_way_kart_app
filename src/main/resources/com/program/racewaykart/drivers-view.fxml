@@ -305,7 +305,7 @@
                                     <Insets left="5.0" right="10.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Отчество">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="206.0" styleClass="label-input" text="Отчество (опционально)">
                                  <padding>
                                     <Insets left="1.0" />
                                  </padding>

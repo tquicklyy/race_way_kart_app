@@ -84,6 +84,13 @@ public class KartsSceneController {
             return;
         }
 
+        try {
+            Integer.parseInt(numberKartInput.getText());
+        } catch (Exception e) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Введён недопустимо большой номер карта.");
+            return;
+        }
+
         if(!isKartNumberNotRepeated(Integer.parseInt(numberKartInput.getText()))) {
             AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Карт с таким номером уже добавлен.");
             return;
