@@ -13,9 +13,8 @@
     -fx-background-size: cover;
 }
 
-.jfx-combo-box {
-    -jfx-focus-color: transparent;
-    -jfx-unfocus-color: transparent;
+.combo-box {
+    -fx-background-insets: 0;
 }
 
 .label-button {

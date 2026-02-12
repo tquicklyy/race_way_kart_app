@@ -3,6 +3,7 @@ package com.program.racewaykart;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
+import com.program.racewaykart.enums.GrandPriStage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class RaceWayKartApplication extends Application {
 
     public static Stage appStage;
     public static boolean isDataSaving;
+    public static GrandPriStage grandPriStage;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,7 +29,8 @@ public class RaceWayKartApplication extends Application {
         try(ObjectInputStream inIsDataSaving = new ObjectInputStream(new FileInputStream("data/is_data_saving.dat"));
             ObjectInputStream inDriver = new ObjectInputStream(new FileInputStream("data/driver.dat"));
             ObjectInputStream inKart = new ObjectInputStream(new FileInputStream("data/kart.dat"));
-            ObjectInputStream inGroup = new ObjectInputStream(new FileInputStream("data/group.dat"))
+            ObjectInputStream inGroup = new ObjectInputStream(new FileInputStream("data/group.dat"));
+            ObjectInputStream inGrandPriStage = new ObjectInputStream(new FileInputStream("data/grand_pri_stage.dat"));
         ) {
             isDataSaving = inIsDataSaving.readBoolean();
 
@@ -35,7 +38,7 @@ public class RaceWayKartApplication extends Application {
                 DriversSceneController.DRIVERS = (List<Driver>) inDriver.readObject();
                 KartsSceneController.KARTS = (List<Kart>) inKart.readObject();
                 GroupsSceneController.GROUPS = (List<Group>) inGroup.readObject();
-
+                grandPriStage = (GrandPriStage) inGrandPriStage.readObject();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage()); // Пока сохранения нет будут падать ошибки, если есть, то файлы будут найдены
@@ -72,16 +75,19 @@ public class RaceWayKartApplication extends Application {
 
             try(ObjectOutputStream outDriver = new ObjectOutputStream(new FileOutputStream("data/driver.dat"));
                 ObjectOutputStream outKart = new ObjectOutputStream(new FileOutputStream("data/kart.dat"));
-                ObjectOutputStream outGroup = new ObjectOutputStream(new FileOutputStream("data/group.dat"))) {
+                ObjectOutputStream outGroup = new ObjectOutputStream(new FileOutputStream("data/group.dat"));
+                ObjectOutputStream outGrandPriStage = new ObjectOutputStream(new FileOutputStream("data/grand_pri_stage.dat"));) {
 
                 if(isDataSaving) {
                     outDriver.writeObject(DriversSceneController.DRIVERS);
                     outKart.writeObject(KartsSceneController.KARTS);
                     outGroup.writeObject(GroupsSceneController.GROUPS);
+                    outGrandPriStage.writeObject(grandPriStage);
                 } else {
                     outDriver.writeObject(new ArrayList<Driver>());
                     outKart.writeObject(new ArrayList<Kart>());
                     outGroup.writeObject(new ArrayList<Group>());
+                    outGrandPriStage.writeObject(GrandPriStage.QUALIFICATION);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

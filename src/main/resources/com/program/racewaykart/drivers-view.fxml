@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -10,9 +10,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/drivers-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.DriversSceneController">
@@ -68,7 +65,7 @@
                               <String fx:value="label-button" />
                            </styleClass>
                         </Label>
-                        <Label fx:id="saveSerialButton1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#changeStatusOfDataSaving" prefHeight="41.0" prefWidth="125.0" text="Сохранять">
+                        <Label fx:id="saveSerialButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="41.0" minWidth="125.0" onMouseClicked="#changeStatusOfDataSaving" prefHeight="41.0" prefWidth="125.0" text="Сохранять">
                            <font>
                               <Font name="Arial" size="29.0" />
                            </font>
@@ -82,33 +79,14 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="10.0" prefWidth="775.0">
+            <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="36.0" prefWidth="775.0">
                <children>
-                  <JFXComboBox focusColor="WHITE" prefHeight="41.0" prefWidth="265.0" promptText="Этап гран-при">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
+                  <ComboBox fx:id="grandPriStageComboBox" prefWidth="265.0" promptText="Этап гран-при">
                      <styleClass>
                         <String fx:value="black-white-button" />
                         <String fx:value="header-button" />
                      </styleClass>
-                     <unFocusColor>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </unFocusColor>
-                  </JFXComboBox>
+                  </ComboBox>
                </children>
             </HBox>
          </children>
