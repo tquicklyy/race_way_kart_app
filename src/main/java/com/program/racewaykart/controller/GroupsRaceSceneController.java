@@ -349,7 +349,7 @@ public class GroupsRaceSceneController extends GroupsGeneralController {
             Group currentGroup = GROUPS.get(nextDriver.getRaceGroup());
 
             if(currentGroup.getFreeCarts().isEmpty()) {
-                AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", String.format("В группе №%d количество водителей превышает количество картов", currentGroup.getID()));
+                AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", String.format("В группе №%d количество водителей превышает число картов.", currentGroup.getID()));
                 GROUPS.clear();
                 return;
             }
