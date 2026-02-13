@@ -2,6 +2,7 @@ package com.program.racewaykart.controller;
 
 import com.program.racewaykart.RaceWayKartApplication;
 import com.program.racewaykart.controller.general.DriversGeneralController;
+import com.program.racewaykart.controller.general.GroupsGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
@@ -26,7 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class GroupsRaceSceneController {
+public class GroupsRaceSceneController extends GroupsGeneralController {
 
     @FXML
     private Label saveSerialButton;
@@ -41,13 +42,6 @@ public class GroupsRaceSceneController {
     private VBox scrollPaneVBox;
 
     public static HashMap<Integer, Group> GROUPS = new HashMap<>();
-
-    @FXML
-    void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
-        Scene kartsScene = new Scene(loader.load());
-        RaceWayKartApplication.appStage.setScene(kartsScene);
-    }
 
     @FXML
     void goToDriversScene() throws IOException {
@@ -70,12 +64,6 @@ public class GroupsRaceSceneController {
         scrollPaneVBox.getChildren().clear();
 
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
-    }
-
-    @FXML
-    void resetAllData() {
-        RaceWayKartApplication.resetAllData();
-        initialize();
     }
 
     @FXML
@@ -152,7 +140,7 @@ public class GroupsRaceSceneController {
     }
 
     @FXML
-    void initialize() {
+    protected void initialize() {
         NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         scrollPaneVBox.getChildren().clear();
 

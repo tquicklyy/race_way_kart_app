@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.controller.general.GroupsGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
@@ -27,7 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
-public class GroupsQualificationSceneController {
+public class GroupsQualificationSceneController extends GroupsGeneralController {
 
     @FXML
     private TextField numberOfGroupsInput;
@@ -45,13 +46,6 @@ public class GroupsQualificationSceneController {
     private VBox scrollPaneVBox;
 
     public static List<Group> GROUPS = new ArrayList<>();
-
-    @FXML
-    void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
-        Scene kartsScene = new Scene(loader.load());
-        RaceWayKartApplication.appStage.setScene(kartsScene);
-    }
 
     @FXML
     void goToDriversScene() throws IOException {
@@ -74,12 +68,6 @@ public class GroupsQualificationSceneController {
         scrollPaneVBox.getChildren().clear();
 
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
-    }
-
-    @FXML
-    void resetAllData() {
-        RaceWayKartApplication.resetAllData();
-        initialize();
     }
 
     @FXML
@@ -156,7 +144,7 @@ public class GroupsQualificationSceneController {
     }
 
     @FXML
-    void initialize() {
+    protected void initialize() {
         NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         scrollPaneVBox.getChildren().clear();
 
