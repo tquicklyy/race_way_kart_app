@@ -11,6 +11,7 @@ import com.program.racewaykart.RaceWayKartApplication;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
+import com.program.racewaykart.enums.GrandPriStage;
 import com.program.racewaykart.helper.AlertHelper;
 import com.program.racewaykart.helper.NodeHelper;
 import javafx.fxml.FXML;
@@ -47,14 +48,14 @@ public class GroupsQualificationSceneController {
 
     @FXML
     void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/karts-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
         Scene kartsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(kartsScene);
     }
 
     @FXML
     void goToDriversScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/drivers-qualification-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_DRIVERS_QUAL_FXML));
         Scene driversScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(driversScene);
     }
@@ -156,7 +157,7 @@ public class GroupsQualificationSceneController {
 
     @FXML
     void initialize() {
-        NodeHelper.updateGranPriComboBox(grandPriStageComboBox);
+        NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         scrollPaneVBox.getChildren().clear();
 
         if(!GROUPS.isEmpty()) {
@@ -167,6 +168,22 @@ public class GroupsQualificationSceneController {
 
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
         updateSaveSerialButton();
+        setUpdateGranPriComboBox();
+    }
+
+    public void setUpdateGranPriComboBox() {
+        grandPriStageComboBox.valueProperty().addListener((_, oldV, newV) -> {
+            if(newV.equals(oldV)) return;
+            FXMLLoader loader;
+            try {
+                loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_GROUPS_RACE_FXML));
+                RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
+                Scene newScene = new Scene(loader.load());
+                RaceWayKartApplication.appStage.setScene(newScene);
+            } catch (IOException e) {
+                System.out.println("Не удалось загрузить файл");
+            }
+        });
     }
 
     void hideHeadersTableAndScrollPane(boolean isEmpty) {

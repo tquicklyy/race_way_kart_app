@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.program.racewaykart.RaceWayKartApplication;
 import com.program.racewaykart.entity.Kart;
+import com.program.racewaykart.enums.GrandPriStage;
 import com.program.racewaykart.helper.AlertHelper;
 import com.program.racewaykart.helper.NodeHelper;
 import javafx.application.Platform;
@@ -45,23 +46,42 @@ public class KartsSceneController {
 
     @FXML
     void initialize() {
-        NodeHelper.updateGranPriComboBox(grandPriStageComboBox);
+        NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         displayDataItems();
 
         hideHeadersTableAndScrollPane(KARTS.isEmpty());
         updateSaveSerialButton();
+        setUpdateGranPriComboBox();
+    }
+
+    public void setUpdateGranPriComboBox() {
+        grandPriStageComboBox.valueProperty().addListener((_, oldV, newV) -> {
+            if(newV.equals(oldV)) return;
+            if(newV.contains("Квалификация")) RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
+            else RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
+        });
     }
 
     @FXML
     void goToGroupsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/groups-qualification-view.fxml"));
+        FXMLLoader loader;
+        if(RaceWayKartApplication.grandPriStage == GrandPriStage.RACE) {
+            loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_GROUPS_RACE_FXML));
+        } else {
+            loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_GROUPS_QUAL_FXML));
+        }
         Scene groupsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(groupsScene);
     }
 
     @FXML
     void goToDriversScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/drivers-qualification-view.fxml"));
+        FXMLLoader loader;
+        if(RaceWayKartApplication.grandPriStage == GrandPriStage.RACE) {
+            loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_DRIVERS_RACE_FXML));
+        } else {
+            loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_DRIVERS_QUAL_FXML));
+        }
         Scene driversScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(driversScene);
     }

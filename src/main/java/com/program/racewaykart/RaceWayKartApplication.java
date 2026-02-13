@@ -20,6 +20,12 @@ import java.util.Objects;
 
 public class RaceWayKartApplication extends Application {
 
+    public static final String PATH_TO_DRIVERS_QUAL_FXML = "/com/program/racewaykart/drivers-qualification-view.fxml";
+    public static final String PATH_TO_DRIVERS_RACE_FXML = "/com/program/racewaykart/drivers-race-view.fxml";
+    public static final String PATH_TO_GROUPS_QUAL_FXML = "/com/program/racewaykart/groups-qualification-view.fxml";
+    public static final String PATH_TO_GROUPS_RACE_FXML = "/com/program/racewaykart/groups-race-view.fxml";
+    public static final String PATH_TO_KARTS_FXML = "/com/program/racewaykart/karts-view.fxml";
+
     public static Stage appStage;
     public static boolean isDataSaving;
     public static GrandPriStage grandPriStage;

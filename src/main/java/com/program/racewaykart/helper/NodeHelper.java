@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 
 public class NodeHelper {
 
-    public static void updateGranPriComboBox(ComboBox<String> comboBox) {
+    public static void initGranPriComboBox(ComboBox<String> comboBox) {
         if(RaceWayKartApplication.grandPriStage == GrandPriStage.QUALIFICATION) {
             comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
             comboBox.getSelectionModel().selectFirst();
@@ -17,5 +17,4 @@ public class NodeHelper {
             comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
         }
     }
-
 }

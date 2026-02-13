@@ -2,6 +2,7 @@ package com.program.racewaykart.controller;
 
 import com.program.racewaykart.RaceWayKartApplication;
 import com.program.racewaykart.entity.Driver;
+import com.program.racewaykart.enums.GrandPriStage;
 import com.program.racewaykart.helper.AlertHelper;
 import com.program.racewaykart.helper.NodeHelper;
 import javafx.application.Platform;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DriversRaceSceneController {
+public class DriversRaceSceneController extends DriversGeneralController {
 
     @FXML
     private VBox dataVBox;
@@ -47,27 +48,41 @@ public class DriversRaceSceneController {
     @FXML
     private TextField surnameInput;
 
-    public static List<Driver> DRIVERS = new ArrayList<>();
-
     @FXML
     void initialize() {
-        NodeHelper.updateGranPriComboBox(grandPriStageComboBox);
+        NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         displayDataItems();
 
         hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
         updateSaveSerialButton();
+        setUpdateGranPriComboBox();
+    }
+
+    public void setUpdateGranPriComboBox() {
+        grandPriStageComboBox.valueProperty().addListener((_, oldV, newV) -> {
+            if(newV.equals(oldV)) return;
+            FXMLLoader loader;
+            try {
+                loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_DRIVERS_QUAL_FXML));
+                RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
+                Scene newScene = new Scene(loader.load());
+                RaceWayKartApplication.appStage.setScene(newScene);
+            } catch (IOException e) {
+                System.out.println("Не удалось загрузить файл");
+            }
+        });
     }
 
     @FXML
     void goToGroupsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/groups-qualification-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_GROUPS_RACE_FXML));
         Scene groupsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(groupsScene);
     }
 
     @FXML
     void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/karts-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
         Scene kartsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(kartsScene);
     }
