@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.GroupsSceneController">
+<VBox alignment="TOP_CENTER" minHeight="520.0" minWidth="785.0" prefHeight="520.0" prefWidth="785.0" styleClass="general-vbox" stylesheets="@../../../styles/groups-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.program.racewaykart.controller.GroupsQualificationSceneController">
    <children>
       <VBox alignment="CENTER" prefHeight="70.0" prefWidth="785.0">
          <children>
@@ -81,7 +81,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="775.0">
                <children>
-                  <ComboBox fx:id="grandPriStageComboBox" prefWidth="265.0" promptText="Этап гран-при">
+                  <ComboBox fx:id="grandPriStageComboBox"  prefWidth="265.0" promptText="Этап гран-при">
                      <styleClass>
                         <String fx:value="black-white-button" />
                         <String fx:value="header-button" />

@@ -1,4 +1,23 @@
-package com.program.racewaykart;
+package com.program.racewaykart.controller;
+
+import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.entity.Driver;
+import com.program.racewaykart.entity.Group;
+import com.program.racewaykart.entity.Kart;
+import com.program.racewaykart.helper.AlertHelper;
+import com.program.racewaykart.helper.NodeHelper;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,28 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.program.racewaykart.entity.Driver;
-import com.program.racewaykart.entity.Group;
-import com.program.racewaykart.entity.Kart;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-
-public class GroupsSceneController {
-
-    @FXML
-    private TextField numberOfGroupsInput;
+public class GroupsRaceSceneController {
 
     @FXML
     private Label saveSerialButton;
+
+    @FXML
+    private ComboBox<String> grandPriStageComboBox;
 
     @FXML
     private ScrollPane scrollPane;
@@ -40,14 +44,14 @@ public class GroupsSceneController {
 
     @FXML
     void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("karts-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/karts-view.fxml"));
         Scene kartsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(kartsScene);
     }
 
     @FXML
     void goToDriversScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("drivers-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/drivers-qualification-view.fxml"));
         Scene driversScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(driversScene);
     }
@@ -149,6 +153,7 @@ public class GroupsSceneController {
 
     @FXML
     void initialize() {
+        NodeHelper.updateGranPriComboBox(grandPriStageComboBox);
         scrollPaneVBox.getChildren().clear();
 
         if(!GROUPS.isEmpty()) {
@@ -178,30 +183,12 @@ public class GroupsSceneController {
             return;
         }
 
-        if(DriversSceneController.DRIVERS.isEmpty()) {
+        if(DriversQualificationSceneController.DRIVERS.isEmpty()) {
             AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "В программу не внесены данные о водителях.");
             return;
         }
 
-        if(!numberOfGroupsInput.getText().matches("^[1-9]\\d*$")) {
-            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "Указанное число некорректно (отрицательное или 0).");
-            return;
-        }
-
-        int numberOfGroups = Integer.parseInt(numberOfGroupsInput.getText());
-
-        if(numberOfGroups > DriversSceneController.DRIVERS.size()) {
-            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "Указанное число превышает количество водителей.");
-            return;
-        }
-
-        if((DriversSceneController.DRIVERS.size() / numberOfGroups) + (DriversSceneController.DRIVERS.size() % numberOfGroups != 0 ? 1 : 0) > KartsSceneController.KARTS.size()) {
-            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "Недостаточно картов для создания такого количества групп.");
-            return;
-        }
-
         resetData();
-        addDataToGroups(numberOfGroups);
         for (Group group: GROUPS) createGroupTable(group);
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
     }
@@ -330,7 +317,7 @@ public class GroupsSceneController {
             GROUPS.add(new Group(new ArrayList<>(KartsSceneController.KARTS), i + 1));
         }
 
-        List<Driver> drivers = new ArrayList<>(DriversSceneController.DRIVERS);
+        List<Driver> drivers = new ArrayList<>(DriversQualificationSceneController.DRIVERS);
 
         int numberOfGroup = 0;
         Random rnd = new Random();

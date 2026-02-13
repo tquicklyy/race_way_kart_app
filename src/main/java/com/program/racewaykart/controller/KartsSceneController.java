@@ -1,23 +1,27 @@
-package com.program.racewaykart;
+package com.program.racewaykart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.program.racewaykart.entity.Driver;
+import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.entity.Kart;
+import com.program.racewaykart.helper.AlertHelper;
+import com.program.racewaykart.helper.NodeHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class DriversSceneController {
+public class KartsSceneController {
 
     @FXML
     private VBox dataVBox;
@@ -26,10 +30,10 @@ public class DriversSceneController {
     private HBox headersTableHBox;
 
     @FXML
-    private TextField nameInput;
+    private TextField numberKartInput;
 
     @FXML
-    private TextField patronymicInput;
+    private ComboBox<String> grandPriStageComboBox;
 
     @FXML
     private Label saveSerialButton;
@@ -37,31 +41,29 @@ public class DriversSceneController {
     @FXML
     private ScrollPane scrollPane;
 
-    @FXML
-    private TextField surnameInput;
-
-    public static List<Driver> DRIVERS = new ArrayList<>();
+    public static List<Kart> KARTS = new ArrayList<>();
 
     @FXML
     void initialize() {
+        NodeHelper.updateGranPriComboBox(grandPriStageComboBox);
         displayDataItems();
 
-        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+        hideHeadersTableAndScrollPane(KARTS.isEmpty());
         updateSaveSerialButton();
     }
 
     @FXML
     void goToGroupsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("groups-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/groups-qualification-view.fxml"));
         Scene groupsScene = new Scene(loader.load());
         RaceWayKartApplication.appStage.setScene(groupsScene);
     }
 
     @FXML
-    void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("karts-view.fxml"));
-        Scene kartsScene = new Scene(loader.load());
-        RaceWayKartApplication.appStage.setScene(kartsScene);
+    void goToDriversScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/program/racewaykart/drivers-qualification-view.fxml"));
+        Scene driversScene = new Scene(loader.load());
+        RaceWayKartApplication.appStage.setScene(driversScene);
     }
 
     @FXML
@@ -78,44 +80,53 @@ public class DriversSceneController {
 
     @FXML
     void resetData() {
-        DRIVERS.clear();
+        KARTS.clear();
         dataVBox.getChildren().clear();
-        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+        hideHeadersTableAndScrollPane(KARTS.isEmpty());
     }
 
     @FXML
     void addData() {
-        if(!isValidNameSurnamePatronymic(surnameInput.getText(), nameInput.getText())) {
-            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления водителя.", "Данные о водителе введены некорректно.");
+        if(!isValidKartNumber(numberKartInput.getText())) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Данные о карте введены некорректно.");
             return;
         }
 
-        Driver newDriver = addDataToDrivers();
-        createRow(newDriver);
-        hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
+        try {
+            Integer.parseInt(numberKartInput.getText());
+        } catch (Exception e) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Введён недопустимо большой номер карта.");
+            return;
+        }
+
+        if(!isKartNumberNotRepeated(Integer.parseInt(numberKartInput.getText()))) {
+            AlertHelper.showErrorAlert("Ошибка добавления.", "Ошибка добавления карта.", "Карт с таким номером уже добавлен.");
+            return;
+        }
+
+        Kart newKart = addDataToKarts();
+        createRow(newKart);
+        hideHeadersTableAndScrollPane(KARTS.isEmpty());
         clearInputs();
-        displayDataItems();
     }
 
     void displayDataItems() {
         dataVBox.getChildren().clear();
 
-        if(!DRIVERS.isEmpty()) {
-            for(Driver driver: DRIVERS) {
-                createRow(driver);
+        if(!KARTS.isEmpty()) {
+            for(Kart kart: KARTS) {
+                createRow(kart);
             }
         }
     }
 
-    void createRow(Driver newDriver) {
+    void createRow(Kart newKart) {
         HBox rowHBox = createHBoxRow();
-        TextField textFieldID = createIDTextFieldRow(newDriver.getID());
-        TextField textFieldSurname = createBlueTextFieldRow(newDriver.getSurname());
-        TextField textFieldName = createBlueTextFieldRow(newDriver.getName());
-        TextField textFieldPatronymic = createBlueTextFieldRow(newDriver.getPatronymic());
-        Label labelDelete = createDeleteButtonRow(rowHBox, newDriver);
+        TextField textFieldId = createIDTextFieldRow(KARTS.indexOf(newKart) + 1);
+        TextField textFieldNumberOfCart = createBlueTextFieldRow(String.valueOf(newKart.getNumberOfKart()));
+        Label labelDelete = createDeleteButtonRow(rowHBox, newKart);
 
-        rowHBox.getChildren().addAll(textFieldID, textFieldSurname, textFieldName, textFieldPatronymic, labelDelete);
+        rowHBox.getChildren().addAll(textFieldId, textFieldNumberOfCart, labelDelete);
         dataVBox.getChildren().add(rowHBox);
     }
 
@@ -144,16 +155,16 @@ public class DriversSceneController {
         textField.setEditable(false);
         textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
 
-        textField.setMinWidth(137);
+        textField.setMinWidth(421);
         textField.setMinHeight(35);
-        textField.setMaxWidth(137);
+        textField.setMaxWidth(421);
         textField.setMaxHeight(35);
 
         HBox.setMargin(textField, new Insets(0,5,0,0));
         return textField;
     }
 
-    Label createDeleteButtonRow(HBox parentToDelete, Driver driverToDelete) {
+    Label createDeleteButtonRow(HBox parentToDelete, Kart kartToDelete) {
         Label label = new Label("X");
         label.getStyleClass().addAll("red-white-button", "id-header", "label-button");
 
@@ -164,10 +175,9 @@ public class DriversSceneController {
 
         label.setOnMouseClicked(_ -> Platform.runLater(() -> {
             dataVBox.getChildren().remove(parentToDelete);
-            DRIVERS.remove(driverToDelete);
+            KARTS.remove(kartToDelete);
             displayDataItems();
-            hideHeadersTableAndScrollPane(DRIVERS.isEmpty());
-
+            hideHeadersTableAndScrollPane(KARTS.isEmpty());
         }));
 
         return label;
@@ -188,29 +198,24 @@ public class DriversSceneController {
     }
 
     void clearInputs() {
-        nameInput.setText("");
-        surnameInput.setText("");
-        patronymicInput.setText("");
+        numberKartInput.setText("");
     }
 
-    Driver addDataToDrivers() {
-        ArrayList<Integer> takenId = new ArrayList<>();
-        for(Driver driver: DRIVERS) {
-            takenId.add(driver.getID());
-        }
-
-        int IDOfDriver = 1;
-        while (takenId.contains(IDOfDriver)) {
-            IDOfDriver++;
-        }
-
-        Driver newDriver = new Driver(IDOfDriver, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
-        DRIVERS.add(IDOfDriver - 1, newDriver);
-        return newDriver;
+    Kart addDataToKarts() {
+        Kart newKart = new Kart(Integer.parseInt(numberKartInput.getText()));
+        KARTS.add(newKart);
+        return newKart;
     }
 
-    boolean isValidNameSurnamePatronymic(String surname, String name) {
-        return !surname.isBlank() && !name.isBlank();
+    boolean isValidKartNumber(String numberOfCart) {
+        return numberOfCart.matches("\\d+");
+    }
+
+    boolean isKartNumberNotRepeated(int number) {
+        for(Kart kart: KARTS) {
+            if(kart.getNumberOfKart() == number) return false;
+        }
+        return true;
     }
 
     void updateSaveSerialButton() {
@@ -220,5 +225,4 @@ public class DriversSceneController {
             saveSerialButton.setText("Сохранять");
         }
     }
-
 }

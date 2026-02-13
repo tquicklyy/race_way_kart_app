@@ -1,5 +1,8 @@
 package com.program.racewaykart;
 
+import com.program.racewaykart.controller.DriversQualificationSceneController;
+import com.program.racewaykart.controller.GroupsQualificationSceneController;
+import com.program.racewaykart.controller.KartsSceneController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
@@ -35,16 +38,20 @@ public class RaceWayKartApplication extends Application {
             isDataSaving = inIsDataSaving.readBoolean();
 
             if(isDataSaving) {
-                DriversSceneController.DRIVERS = (List<Driver>) inDriver.readObject();
+                DriversQualificationSceneController.DRIVERS = (List<Driver>) inDriver.readObject();
                 KartsSceneController.KARTS = (List<Kart>) inKart.readObject();
-                GroupsSceneController.GROUPS = (List<Group>) inGroup.readObject();
+                GroupsQualificationSceneController.GROUPS = (List<Group>) inGroup.readObject();
                 grandPriStage = (GrandPriStage) inGrandPriStage.readObject();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage()); // Пока сохранения нет будут падать ошибки, если есть, то файлы будут найдены
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-view.fxml"));
+        if(grandPriStage == null) grandPriStage = GrandPriStage.QUALIFICATION;
+
+        FXMLLoader fxmlLoader;
+        if(grandPriStage == GrandPriStage.QUALIFICATION) fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-qualification-view.fxml"));
+        else fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-race-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         appStage = stage;
 
@@ -79,9 +86,9 @@ public class RaceWayKartApplication extends Application {
                 ObjectOutputStream outGrandPriStage = new ObjectOutputStream(new FileOutputStream("data/grand_pri_stage.dat"));) {
 
                 if(isDataSaving) {
-                    outDriver.writeObject(DriversSceneController.DRIVERS);
+                    outDriver.writeObject(DriversQualificationSceneController.DRIVERS);
                     outKart.writeObject(KartsSceneController.KARTS);
-                    outGroup.writeObject(GroupsSceneController.GROUPS);
+                    outGroup.writeObject(GroupsQualificationSceneController.GROUPS);
                     outGrandPriStage.writeObject(grandPriStage);
                 } else {
                     outDriver.writeObject(new ArrayList<Driver>());
@@ -101,9 +108,9 @@ public class RaceWayKartApplication extends Application {
     }
 
     public static void resetAllData() {
-        DriversSceneController.DRIVERS.clear();
+        DriversQualificationSceneController.DRIVERS.clear();
         KartsSceneController.KARTS.clear();
-        GroupsSceneController.GROUPS.clear();
+        GroupsQualificationSceneController.GROUPS.clear();
     }
 
     public static void main(String[] args) {

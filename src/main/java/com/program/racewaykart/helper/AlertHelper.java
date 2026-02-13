@@ -1,5 +1,6 @@
-package com.program.racewaykart;
+package com.program.racewaykart.helper;
 
+import com.program.racewaykart.RaceWayKartApplication;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 
