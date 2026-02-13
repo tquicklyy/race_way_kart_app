@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class Driver implements Serializable {
 
+    private int raceGroup;
+
     private int ID;
 
     private String surname;
@@ -20,12 +22,14 @@ public class Driver implements Serializable {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
+        this.raceGroup = -1;
     }
 
     public Driver(String surname, String name, String patronymic) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
+        this.raceGroup = -1;
     }
 
     public int getID() {
@@ -66,6 +70,14 @@ public class Driver implements Serializable {
 
     public void setCurrentKart(Kart currentKart) {
         this.currentKart = currentKart;
+    }
+
+    public int getRaceGroup() {
+        return raceGroup;
+    }
+
+    public void setRaceGroup(int raceGroup) {
+        this.raceGroup = raceGroup;
     }
 
     @Override

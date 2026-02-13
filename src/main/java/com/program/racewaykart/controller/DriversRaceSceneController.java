@@ -63,6 +63,9 @@ public class DriversRaceSceneController extends DriversGeneralController {
             if(newV.equals(oldV)) return;
             FXMLLoader loader;
             try {
+                for(Driver driver: DRIVERS) {
+                    driver.setRaceGroup(-1);
+                }
                 loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_DRIVERS_QUAL_FXML));
                 RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
                 Scene newScene = new Scene(loader.load());
@@ -120,17 +123,19 @@ public class DriversRaceSceneController extends DriversGeneralController {
     void createRow(Driver newDriver) {
         HBox rowHBox = createHBoxRow();
         TextField textFieldID = createIDTextFieldRow(newDriver.getID());
+        TextField textFieldGroup = createBlueGroupRow(newDriver);
         TextField textFieldSurname = createBlueTextFieldRow(newDriver.getSurname());
         TextField textFieldName = createBlueTextFieldRow(newDriver.getName());
         TextField textFieldPatronymic = createBlueTextFieldRow(newDriver.getPatronymic());
         Label labelDelete = createDeleteButtonRow(rowHBox, newDriver);
 
-        rowHBox.getChildren().addAll(textFieldID, textFieldSurname, textFieldName, textFieldPatronymic, labelDelete);
+        rowHBox.getChildren().addAll(textFieldID, textFieldGroup, textFieldSurname, textFieldName, textFieldPatronymic, labelDelete);
         dataVBox.getChildren().add(rowHBox);
     }
 
     HBox createHBoxRow() {
         HBox hBox = new HBox();
+        hBox.setSpacing(4);
         hBox.setAlignment(Pos.CENTER_LEFT);
         return hBox;
     }
@@ -145,7 +150,44 @@ public class DriversRaceSceneController extends DriversGeneralController {
         textField.setMaxWidth(30);
         textField.setMaxHeight(30);
 
-        HBox.setMargin(textField, new Insets(0,5,0,0));
+        return textField;
+    }
+
+    TextField createBlueGroupRow(Driver newDriver) {
+        TextField textField;
+        if(newDriver.getRaceGroup() == -1) {
+            textField = new TextField();
+            textField.setPromptText("Группа");
+        } else {
+            textField = new TextField(String.valueOf(newDriver.getRaceGroup()));
+        }
+        textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
+
+        textField.setMinWidth(70);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(70);
+        textField.setMaxHeight(30);
+
+        textField.focusedProperty().addListener((obs, oldV, newV) -> {
+            if(!newV) {
+                String textGroup = textField.getText().trim();
+                if(textGroup.isEmpty()) {
+                    newDriver.setRaceGroup(-1);
+                    textField.clear();
+                    textField.setPromptText("Группа");
+                    return;
+                }
+                if(!textGroup.matches("\\d+")) {
+                    newDriver.setRaceGroup(-1);
+                    AlertHelper.showErrorAlert("Ошибка ввода", "Ошибка ввода группы", "В поле внесено некорректное значение.");
+                    textField.clear();
+                    textField.setPromptText("Группа");
+                    return;
+                }
+                newDriver.setRaceGroup(Integer.parseInt(textGroup));
+            }
+        });
+
         return textField;
     }
 
@@ -154,12 +196,11 @@ public class DriversRaceSceneController extends DriversGeneralController {
         textField.setEditable(false);
         textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
 
-        textField.setMinWidth(137);
-        textField.setMinHeight(35);
-        textField.setMaxWidth(137);
-        textField.setMaxHeight(35);
+        textField.setMinWidth(130);
+        textField.setMinHeight(30);
+        textField.setMaxWidth(130);
+        textField.setMaxHeight(30);
 
-        HBox.setMargin(textField, new Insets(0,5,0,0));
         return textField;
     }
 
