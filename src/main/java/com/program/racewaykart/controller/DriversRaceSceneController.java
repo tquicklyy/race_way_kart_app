@@ -1,6 +1,7 @@
 package com.program.racewaykart.controller;
 
 import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.controller.general.DriversGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.enums.GrandPriStage;
 import com.program.racewaykart.helper.AlertHelper;
@@ -20,7 +21,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DriversRaceSceneController extends DriversGeneralController {
 
@@ -49,7 +49,7 @@ public class DriversRaceSceneController extends DriversGeneralController {
     private TextField surnameInput;
 
     @FXML
-    void initialize() {
+    protected void initialize() {
         NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         displayDataItems();
 
@@ -58,7 +58,7 @@ public class DriversRaceSceneController extends DriversGeneralController {
         setUpdateGranPriComboBox();
     }
 
-    public void setUpdateGranPriComboBox() {
+    protected void setUpdateGranPriComboBox() {
         grandPriStageComboBox.valueProperty().addListener((_, oldV, newV) -> {
             if(newV.equals(oldV)) return;
             FXMLLoader loader;
@@ -81,22 +81,9 @@ public class DriversRaceSceneController extends DriversGeneralController {
     }
 
     @FXML
-    void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
-        Scene kartsScene = new Scene(loader.load());
-        RaceWayKartApplication.appStage.setScene(kartsScene);
-    }
-
-    @FXML
     void changeStatusOfDataSaving() {
         RaceWayKartApplication.isDataSaving = !RaceWayKartApplication.isDataSaving;
         updateSaveSerialButton();
-    }
-
-    @FXML
-    void resetAllData() {
-        RaceWayKartApplication.resetAllData();
-        initialize();
     }
 
     @FXML
@@ -230,10 +217,6 @@ public class DriversRaceSceneController extends DriversGeneralController {
         Driver newDriver = new Driver(IDOfDriver, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
         DRIVERS.add(IDOfDriver - 1, newDriver);
         return newDriver;
-    }
-
-    boolean isValidNameSurnamePatronymic(String surname, String name) {
-        return !surname.isBlank() && !name.isBlank();
     }
 
     void updateSaveSerialButton() {

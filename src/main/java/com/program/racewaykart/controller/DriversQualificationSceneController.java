@@ -2,9 +2,9 @@ package com.program.racewaykart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.controller.general.DriversGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.enums.GrandPriStage;
 import com.program.racewaykart.helper.AlertHelper;
@@ -49,7 +49,7 @@ public class DriversQualificationSceneController extends DriversGeneralControlle
     private TextField surnameInput;
 
     @FXML
-    void initialize() {
+    protected void initialize() {
         NodeHelper.initGranPriComboBox(grandPriStageComboBox);
         displayDataItems();
 
@@ -81,22 +81,9 @@ public class DriversQualificationSceneController extends DriversGeneralControlle
     }
 
     @FXML
-    void goToKartsScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(RaceWayKartApplication.PATH_TO_KARTS_FXML));
-        Scene kartsScene = new Scene(loader.load());
-        RaceWayKartApplication.appStage.setScene(kartsScene);
-    }
-
-    @FXML
     void changeStatusOfDataSaving() {
         RaceWayKartApplication.isDataSaving = !RaceWayKartApplication.isDataSaving;
         updateSaveSerialButton();
-    }
-
-    @FXML
-    void resetAllData() {
-        RaceWayKartApplication.resetAllData();
-        initialize();
     }
 
     @FXML
@@ -230,10 +217,6 @@ public class DriversQualificationSceneController extends DriversGeneralControlle
         Driver newDriver = new Driver(IDOfDriver, surnameInput.getText(), nameInput.getText(), patronymicInput.getText());
         DRIVERS.add(IDOfDriver - 1, newDriver);
         return newDriver;
-    }
-
-    boolean isValidNameSurnamePatronymic(String surname, String name) {
-        return !surname.isBlank() && !name.isBlank();
     }
 
     void updateSaveSerialButton() {

@@ -9,4 +9,6 @@ module com.racewaykart.program.racewaykart {
     opens com.program.racewaykart.helper to javafx.fxml;
     exports com.program.racewaykart.controller;
     opens com.program.racewaykart.controller to javafx.fxml;
+    exports com.program.racewaykart.controller.general;
+    opens com.program.racewaykart.controller.general to javafx.fxml;
 }

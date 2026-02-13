@@ -80,7 +80,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="15.0" prefWidth="775.0">
+            <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="775.0">
                <children>
                   <ComboBox fx:id="grandPriStageComboBox" prefWidth="265.0" promptText="Этап гран-при">
                      <styleClass>

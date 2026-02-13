@@ -79,9 +79,9 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="10.0" prefWidth="775.0">
+            <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="775.0">
                <children>
-                  <ComboBox fx:id="grandPriStageComboBox"  prefWidth="265.0" promptText="Этап гран-при">
+                  <ComboBox fx:id="grandPriStageComboBox" prefWidth="265.0" promptText="Этап гран-при">
                      <styleClass>
                         <String fx:value="black-white-button" />
                         <String fx:value="header-button" />
