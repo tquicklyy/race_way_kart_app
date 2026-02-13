@@ -21,16 +21,8 @@ public class Group implements Serializable {
         return drivers;
     }
 
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
-    }
-
     public List<Kart> getFreeCarts() {
         return freeCarts;
-    }
-
-    public void setFreeCarts(List<Kart> freeCarts) {
-        this.freeCarts = freeCarts;
     }
 
     public int getID() {

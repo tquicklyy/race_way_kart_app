@@ -57,8 +57,14 @@ public class KartsSceneController {
     public void setUpdateGranPriComboBox() {
         grandPriStageComboBox.valueProperty().addListener((_, oldV, newV) -> {
             if(newV.equals(oldV)) return;
-            if(newV.contains("Квалификация")) RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
-            else RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
+            if(newV.contains("Квалификация")) {
+                RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
+                GroupsRaceSceneController.GROUPS.clear();
+            }
+            else {
+                RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
+                GroupsQualificationSceneController.GROUPS.clear();
+            }
         });
     }
 

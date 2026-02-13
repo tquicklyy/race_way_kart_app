@@ -65,6 +65,7 @@ public class DriversQualificationSceneController extends DriversGeneralControlle
             try {
                 loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_DRIVERS_RACE_FXML));
                 RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
+                GroupsQualificationSceneController.GROUPS.clear();
                 Scene newScene = new Scene(loader.load());
                 RaceWayKartApplication.appStage.setScene(newScene);
             } catch (IOException e) {

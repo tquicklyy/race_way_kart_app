@@ -15,10 +15,6 @@ public class Kart implements Serializable {
         return numberOfKart;
     }
 
-    public void setNumberOfKart(int numberOfKart) {
-        this.numberOfKart = numberOfKart;
-    }
-
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

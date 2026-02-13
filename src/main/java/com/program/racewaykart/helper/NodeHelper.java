@@ -7,14 +7,16 @@ import javafx.scene.control.ComboBox;
 public class NodeHelper {
 
     public static void initGranPriComboBox(ComboBox<String> comboBox) {
-        if(RaceWayKartApplication.grandPriStage == GrandPriStage.QUALIFICATION) {
-            comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
-            comboBox.getSelectionModel().selectFirst();
-            comboBox.getItems().add(GrandPriStage.RACE.getLabel());
-        } else {
-            comboBox.getItems().add(GrandPriStage.RACE.getLabel());
-            comboBox.getSelectionModel().selectFirst();
-            comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
+        if(comboBox.getItems().isEmpty()) {
+            if(RaceWayKartApplication.grandPriStage == GrandPriStage.QUALIFICATION) {
+                comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
+                comboBox.getSelectionModel().selectFirst();
+                comboBox.getItems().add(GrandPriStage.RACE.getLabel());
+            } else {
+                comboBox.getItems().add(GrandPriStage.RACE.getLabel());
+                comboBox.getSelectionModel().selectFirst();
+                comboBox.getItems().add(GrandPriStage.QUALIFICATION.getLabel());
+            }
         }
     }
 }

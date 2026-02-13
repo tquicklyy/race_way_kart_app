@@ -9,7 +9,6 @@ import com.program.racewaykart.helper.NodeHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -68,6 +67,7 @@ public class DriversRaceSceneController extends DriversGeneralController {
                 }
                 loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_DRIVERS_QUAL_FXML));
                 RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
+                GroupsRaceSceneController.GROUPS.clear();
                 Scene newScene = new Scene(loader.load());
                 RaceWayKartApplication.appStage.setScene(newScene);
             } catch (IOException e) {
@@ -161,14 +161,14 @@ public class DriversRaceSceneController extends DriversGeneralController {
         } else {
             textField = new TextField(String.valueOf(newDriver.getRaceGroup()));
         }
-        textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-default");
+        textField.getStyleClass().addAll("blue-white-button", "data-items", "text-field-clear-padding-cursor-text");
 
         textField.setMinWidth(70);
         textField.setMinHeight(30);
         textField.setMaxWidth(70);
         textField.setMaxHeight(30);
 
-        textField.focusedProperty().addListener((obs, oldV, newV) -> {
+        textField.focusedProperty().addListener((_, _, newV) -> {
             if(!newV) {
                 String textGroup = textField.getText().trim();
                 if(textGroup.isEmpty()) {
@@ -177,7 +177,7 @@ public class DriversRaceSceneController extends DriversGeneralController {
                     textField.setPromptText("Группа");
                     return;
                 }
-                if(!textGroup.matches("\\d+")) {
+                if(!textGroup.matches("\\d+") || textGroup.startsWith("0")) {
                     newDriver.setRaceGroup(-1);
                     AlertHelper.showErrorAlert("Ошибка ввода", "Ошибка ввода группы", "В поле внесено некорректное значение.");
                     textField.clear();

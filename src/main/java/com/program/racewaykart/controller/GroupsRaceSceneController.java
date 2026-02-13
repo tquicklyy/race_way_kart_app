@@ -1,6 +1,7 @@
 package com.program.racewaykart.controller;
 
 import com.program.racewaykart.RaceWayKartApplication;
+import com.program.racewaykart.controller.general.DriversGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
@@ -23,9 +24,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GroupsRaceSceneController {
 
@@ -41,7 +40,7 @@ public class GroupsRaceSceneController {
     @FXML
     private VBox scrollPaneVBox;
 
-    public static List<Group> GROUPS = new ArrayList<>();
+    public static HashMap<Integer, Group> GROUPS = new HashMap<>();
 
     @FXML
     void goToKartsScene() throws IOException {
@@ -65,7 +64,7 @@ public class GroupsRaceSceneController {
 
     @FXML
     void resetData() {
-        for(Group group: GROUPS) group.clearGroup();
+        for(Group group: GROUPS.values()) group.clearGroup();
         GROUPS.clear();
 
         scrollPaneVBox.getChildren().clear();
@@ -109,7 +108,7 @@ public class GroupsRaceSceneController {
             int lengthOfPatronymic = "Отсутствует".length();
             int lengthOfNumberOfCart = "Номер карта".length();
 
-            for (Group group: GROUPS) {
+            for (Group group: GROUPS.values()) {
                 for (Driver driver: group.getDrivers()) {
                     if(String.valueOf(group.getID()).length() > lengthOfNumber) lengthOfNumber = String.valueOf(group.getID()).length();
                     if(String.valueOf(driver.getID()).length() > lengthOfID) lengthOfID = String.valueOf(driver.getID()).length();
@@ -123,7 +122,7 @@ public class GroupsRaceSceneController {
                 String mainHeader = "Группы." + System.lineSeparator() + System.lineSeparator();
                 writer.write(mainHeader);
 
-                for (Group group: GROUPS) {
+                for (Group group: GROUPS.values()) {
                     String header = String.format("Группа №%s.", group.getID()) + System.lineSeparator();
                     String headerItems = String.format("%-" + lengthOfNumber +"s", "№")
                             + "  " + String.format("%-" + lengthOfID +"s", "ID")
@@ -136,7 +135,7 @@ public class GroupsRaceSceneController {
 
                     for(Driver driver: group.getDrivers()) {
                         String dataItems = String.format("%-" + lengthOfNumber +"s", group.getDrivers().indexOf(driver) + 1)
-                                + "   " + String.format("%-" + lengthOfID +"s", group.getID())
+                                + "   " + String.format("%-" + lengthOfID +"s", driver.getID())
                                 + "   " + String.format("%-" + lengthOfSurname +"s", driver.getSurname())
                                 + "   " + String.format("%-" + lengthOfName +"s", driver.getName())
                                 + "   " + String.format("%-" + lengthOfPatronymic +"s", driver.getPatronymic())
@@ -158,7 +157,7 @@ public class GroupsRaceSceneController {
         scrollPaneVBox.getChildren().clear();
 
         if(!GROUPS.isEmpty()) {
-            for(Group group: GROUPS) {
+            for(Group group: GROUPS.values()) {
                 createGroupTable(group);
             }
         }
@@ -176,6 +175,7 @@ public class GroupsRaceSceneController {
                 loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_GROUPS_QUAL_FXML));
                 RaceWayKartApplication.grandPriStage = GrandPriStage.QUALIFICATION;
                 Scene newScene = new Scene(loader.load());
+                GROUPS.clear();
                 RaceWayKartApplication.appStage.setScene(newScene);
             } catch (IOException e) {
                 System.out.println("Не удалось загрузить файл");
@@ -205,8 +205,15 @@ public class GroupsRaceSceneController {
             return;
         }
 
+        if(!isDriversHaveDriverWithGroup()) {
+            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "В программу не внесены данные о водителях с группами.");
+            return;
+        }
+
         resetData();
-        for (Group group: GROUPS) createGroupTable(group);
+        addDataToGroups();
+
+        for (Group group: GROUPS.values()) createGroupTable(group);
         hideHeadersTableAndScrollPane(GROUPS.isEmpty());
     }
 
@@ -329,27 +336,40 @@ public class GroupsRaceSceneController {
         return textField;
     }
 
-    void addDataToGroups(int numberOfGroups) {
-        for(int i = 0; i < numberOfGroups; i++) {
-            GROUPS.add(new Group(new ArrayList<>(KartsSceneController.KARTS), i + 1));
+    void addDataToGroups() {
+        List<Driver> drivers = new ArrayList<>(DriversGeneralController.DRIVERS);
+        List<Driver> driversWithGroup = new ArrayList<>();
+        TreeSet<Integer> numbersOfGroup = new TreeSet<>();
+
+        for(Driver driver: drivers) {
+            if(driver.getRaceGroup() != -1) {
+                driversWithGroup.add(driver);
+                numbersOfGroup.add(driver.getRaceGroup());
+            }
         }
 
-        List<Driver> drivers = new ArrayList<>(DriversQualificationSceneController.DRIVERS);
+        for(Integer numberOfGroup: numbersOfGroup) {
+            GROUPS.put(numberOfGroup, new Group(new ArrayList<>(KartsSceneController.KARTS), numberOfGroup));
+        }
 
-        int numberOfGroup = 0;
         Random rnd = new Random();
 
-        while (!drivers.isEmpty()) {
-            Driver nextDriver = drivers.get(rnd.nextInt(drivers.size()));
-            drivers.remove(nextDriver);
+        while (!driversWithGroup.isEmpty()) {
+            Driver nextDriver = driversWithGroup.getFirst();
+            driversWithGroup.remove(nextDriver);
 
-            Group currentGroup = GROUPS.get(numberOfGroup % numberOfGroups);
+            Group currentGroup = GROUPS.get(nextDriver.getRaceGroup());
+
+            if(currentGroup.getFreeCarts().isEmpty()) {
+                AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", String.format("В группе №%d количество водителей превышает количество картов", currentGroup.getID()));
+                GROUPS.clear();
+                return;
+            }
+
             Kart kartToDriver = currentGroup.getFreeCarts().get(rnd.nextInt(currentGroup.getFreeCarts().size()));
             nextDriver.setCurrentKart(kartToDriver);
             currentGroup.getDrivers().add(nextDriver);
             currentGroup.getFreeCarts().remove(kartToDriver);
-
-            numberOfGroup++;
         }
     }
 
@@ -359,6 +379,13 @@ public class GroupsRaceSceneController {
         } else {
             saveSerialButton.setText("Сохранять");
         }
+    }
+
+    boolean isDriversHaveDriverWithGroup() {
+        for(Driver driver: DriversGeneralController.DRIVERS) {
+            if(driver.getRaceGroup() != -1) return true;
+        }
+        return false;
     }
 
 }

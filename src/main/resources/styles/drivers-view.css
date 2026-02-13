@@ -75,6 +75,14 @@
    -fx-cursor: default;
 }
 
+.text-field-clear-padding-cursor-text {
+   -fx-padding: 0;
+}
+
+.text-field-clear-padding-cursor-text .content {
+   -fx-cursor: text;
+}
+
 .id-header {
    -fx-font-size: 16px;
    -fx-alignment: center;

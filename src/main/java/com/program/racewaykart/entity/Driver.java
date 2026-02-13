@@ -9,23 +9,16 @@ public class Driver implements Serializable {
 
     private int ID;
 
-    private String surname;
+    private final String surname;
 
-    private String name;
+    private final String name;
 
-    private String patronymic;
+    private final String patronymic;
 
     private Kart currentKart;
 
     public Driver(int ID, String surname, String name, String patronymic) {
         this.ID = ID;
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
-        this.raceGroup = -1;
-    }
-
-    public Driver(String surname, String name, String patronymic) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic.isBlank() ? "Отсутствует" : patronymic;
@@ -44,24 +37,12 @@ public class Driver implements Serializable {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPatronymic() {
         return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
     }
 
     public Kart getCurrentKart() {

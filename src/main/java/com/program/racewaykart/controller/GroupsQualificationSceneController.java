@@ -139,7 +139,7 @@ public class GroupsQualificationSceneController {
 
                     for(Driver driver: group.getDrivers()) {
                         String dataItems = String.format("%-" + lengthOfNumber +"s", group.getDrivers().indexOf(driver) + 1)
-                                + "   " + String.format("%-" + lengthOfID +"s", group.getID())
+                                + "   " + String.format("%-" + lengthOfID +"s", driver.getID())
                                 + "   " + String.format("%-" + lengthOfSurname +"s", driver.getSurname())
                                 + "   " + String.format("%-" + lengthOfName +"s", driver.getName())
                                 + "   " + String.format("%-" + lengthOfPatronymic +"s", driver.getPatronymic())
@@ -179,6 +179,7 @@ public class GroupsQualificationSceneController {
                 loader = new FXMLLoader(RaceWayKartApplication.class.getResource(RaceWayKartApplication.PATH_TO_GROUPS_RACE_FXML));
                 RaceWayKartApplication.grandPriStage = GrandPriStage.RACE;
                 Scene newScene = new Scene(loader.load());
+                GROUPS.clear();
                 RaceWayKartApplication.appStage.setScene(newScene);
             } catch (IOException e) {
                 System.out.println("Не удалось загрузить файл");
@@ -209,7 +210,7 @@ public class GroupsQualificationSceneController {
         }
 
         if(!numberOfGroupsInput.getText().matches("^[1-9]\\d*$")) {
-            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "Указанное число некорректно (отрицательное или 0).");
+            AlertHelper.showErrorAlert("Ошибка создания", "Ошибка создания групп", "В поле числа групп введено некорректное значение.");
             return;
         }
 

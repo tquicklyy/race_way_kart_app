@@ -1,8 +1,7 @@
 package com.program.racewaykart;
 
-import com.program.racewaykart.controller.DriversQualificationSceneController;
-import com.program.racewaykart.controller.GroupsQualificationSceneController;
-import com.program.racewaykart.controller.KartsSceneController;
+import com.program.racewaykart.controller.*;
+import com.program.racewaykart.controller.general.DriversGeneralController;
 import com.program.racewaykart.entity.Driver;
 import com.program.racewaykart.entity.Group;
 import com.program.racewaykart.entity.Kart;
@@ -15,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,15 +38,17 @@ public class RaceWayKartApplication extends Application {
         try(ObjectInputStream inIsDataSaving = new ObjectInputStream(new FileInputStream("data/is_data_saving.dat"));
             ObjectInputStream inDriver = new ObjectInputStream(new FileInputStream("data/driver.dat"));
             ObjectInputStream inKart = new ObjectInputStream(new FileInputStream("data/kart.dat"));
-            ObjectInputStream inGroup = new ObjectInputStream(new FileInputStream("data/group.dat"));
-            ObjectInputStream inGrandPriStage = new ObjectInputStream(new FileInputStream("data/grand_pri_stage.dat"));
+            ObjectInputStream inGroupQual = new ObjectInputStream(new FileInputStream("data/group_qual.dat"));
+            ObjectInputStream inGroupRace = new ObjectInputStream(new FileInputStream("data/group_race.dat"));
+            ObjectInputStream inGrandPriStage = new ObjectInputStream(new FileInputStream("data/grand_pri_stage.dat"))
         ) {
             isDataSaving = inIsDataSaving.readBoolean();
 
             if(isDataSaving) {
-                DriversQualificationSceneController.DRIVERS = (List<Driver>) inDriver.readObject();
+                DriversGeneralController.DRIVERS = (List<Driver>) inDriver.readObject();
                 KartsSceneController.KARTS = (List<Kart>) inKart.readObject();
-                GroupsQualificationSceneController.GROUPS = (List<Group>) inGroup.readObject();
+                GroupsQualificationSceneController.GROUPS = (List<Group>) inGroupQual.readObject();
+                GroupsRaceSceneController.GROUPS = (HashMap<Integer, Group>) inGroupRace.readObject();
                 grandPriStage = (GrandPriStage) inGrandPriStage.readObject();
             }
         } catch (Exception e) {
@@ -56,8 +58,14 @@ public class RaceWayKartApplication extends Application {
         if(grandPriStage == null) grandPriStage = GrandPriStage.QUALIFICATION;
 
         FXMLLoader fxmlLoader;
-        if(grandPriStage == GrandPriStage.QUALIFICATION) fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-qualification-view.fxml"));
-        else fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-race-view.fxml"));
+        if(grandPriStage == GrandPriStage.QUALIFICATION) {
+            fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-qualification-view.fxml"));
+            GroupsRaceSceneController.GROUPS = new HashMap<>();
+        }
+        else {
+            fxmlLoader = new FXMLLoader(RaceWayKartApplication.class.getResource("groups-race-view.fxml"));
+            GroupsQualificationSceneController.GROUPS = new ArrayList<>();
+        }
         Scene scene = new Scene(fxmlLoader.load());
         appStage = stage;
 
@@ -88,18 +96,22 @@ public class RaceWayKartApplication extends Application {
 
             try(ObjectOutputStream outDriver = new ObjectOutputStream(new FileOutputStream("data/driver.dat"));
                 ObjectOutputStream outKart = new ObjectOutputStream(new FileOutputStream("data/kart.dat"));
-                ObjectOutputStream outGroup = new ObjectOutputStream(new FileOutputStream("data/group.dat"));
-                ObjectOutputStream outGrandPriStage = new ObjectOutputStream(new FileOutputStream("data/grand_pri_stage.dat"));) {
+                ObjectOutputStream outGroupQual = new ObjectOutputStream(new FileOutputStream("data/group_qual.dat"));
+                ObjectOutputStream outGroupRace = new ObjectOutputStream(new FileOutputStream("data/group_race.dat"));
+                ObjectOutputStream outGrandPriStage = new ObjectOutputStream(new FileOutputStream("data/grand_pri_stage.dat"))
+                ) {
 
                 if(isDataSaving) {
-                    outDriver.writeObject(DriversQualificationSceneController.DRIVERS);
+                    outDriver.writeObject(DriversGeneralController.DRIVERS);
                     outKart.writeObject(KartsSceneController.KARTS);
-                    outGroup.writeObject(GroupsQualificationSceneController.GROUPS);
+                    outGroupQual.writeObject(GroupsQualificationSceneController.GROUPS);
+                    outGroupRace.writeObject(GroupsRaceSceneController.GROUPS);
                     outGrandPriStage.writeObject(grandPriStage);
                 } else {
                     outDriver.writeObject(new ArrayList<Driver>());
                     outKart.writeObject(new ArrayList<Kart>());
-                    outGroup.writeObject(new ArrayList<Group>());
+                    outGroupQual.writeObject(new ArrayList<Group>());
+                    outGroupRace.writeObject(new HashMap<Integer, Group>());
                     outGrandPriStage.writeObject(GrandPriStage.QUALIFICATION);
                 }
             } catch (Exception e) {
@@ -117,6 +129,7 @@ public class RaceWayKartApplication extends Application {
         DriversQualificationSceneController.DRIVERS.clear();
         KartsSceneController.KARTS.clear();
         GroupsQualificationSceneController.GROUPS.clear();
+        GroupsRaceSceneController.GROUPS.clear();
     }
 
     public static void main(String[] args) {
